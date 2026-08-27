@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="ne">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>कर्मसाक्षी — पण्डितको दैनिक साथी</title>
+<meta name="description" content="पञ्चाङ्ग, पात्रो, मुहूर्त, कुण्डली र कर्मकाण्डका विधि — एउटै ठाउँमा। नेपाली पुरोहितका लागि बनेको एप।">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23780b1a'/><text y='72' x='50' text-anchor='middle' font-size='62' fill='%23e9a93c'>क</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gotu&family=Martel:wght@400;700;800;900&family=Mukta:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── कर्मसाक्षीको परिचय-पृष्ठ ───────────────────────────────────────────────
+   रङ र अक्षर एपकै `theme.css` बाट लिइएका हुन् — यो पाना र एप एउटै कुरा हुन्,
+   त्यसैले दुई ठाउँमा दुई पहिचान हुनु हुँदैन.
+
+   एउटा कुरा उल्टाइएको छ: एपमा कागज पृष्ठभूमि हो र सिन्दूर छाप; यहाँ शिरमा
+   सिन्दूर नै भुइँ हो, र कागज तल आउँछ. मन्दिरको ढुङ्गे पाटीजस्तो देखियोस्
+   भनेर — पञ्चाङ्गका पाँच अङ्ग त्यहीँ कुँदिएका छन्. */
+:root{
+  --brand:#780b1a; --brand-2:#9c1526; --brand-deep:#4d0710;
+  --saffron:#e4922b; --gold:#e9a93c; --gold-hi:#f7d07a;
+  --paper:#f6efe8; --card:#fff; --rule:#e7dcd1; --rule-strong:#d7c7b8;
+  --ink:#241a17; --ink-2:#4a3b36; --muted:#8a7a72;
+  --deva:"Mukta",system-ui,sans-serif;
+  --head:"Martel",Georgia,serif;
+  --display:"Gotu","Martel",serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font:400 17px/1.75 var(--deva);
+}
+.wrap{max-width:1080px;margin-inline:auto;padding-inline:24px}
+a{color:var(--brand-2)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
+
+/* ── शिर ─────────────────────────────────────────────────────────────────── */
+.top{
+  background:
+    radial-gradient(120% 90% at 50% -20%, var(--brand-2) 0%, var(--brand) 45%, var(--brand-deep) 100%);
+  color:#fff3f1; padding:72px 0 0; position:relative; overflow:hidden;
+}
+/* धूपको धुवाँजस्तो हल्का उज्यालो — सजावट होइन, भुइँलाई सपाट हुनबाट जोगाउने. */
+.top::after{
+  content:""; position:absolute; inset:auto 0 -1px 0; height:120px;
+  background:linear-gradient(to bottom,transparent,rgba(0,0,0,.18));
+  pointer-events:none;
+}
+.mark{
+  font:400 clamp(46px,9vw,86px)/1 var(--display);
+  margin:0; color:#fff; letter-spacing:.005em;
+}
+.tagline{
+  font:500 clamp(15px,2.4vw,19px)/1.6 var(--deva);
+  color:var(--gold-hi); margin:12px 0 0; letter-spacing:.02em;
+}
+.lede{
+  font:300 clamp(17px,2.6vw,21px)/1.85 var(--deva);
+  color:#f6e6e2; margin:26px 0 0; max-width:44ch;
+}
+
+/* ── हस्ताक्षर: पञ्चाङ्गका पाँच अङ्ग ────────────────────────────────────────
+   क्रमाङ्क सजावट होइन — «पञ्चाङ्ग» भन्नुको अर्थ नै पाँच अङ्ग हो, र क्रम
+   गणनाको हिस्सा हो. त्यसैले १–५ लेखिएको छ. */
+.limbs{
+  margin:56px 0 0; padding:0; list-style:none;
+  display:grid; grid-template-columns:repeat(5,1fr);
+  border-top:1px solid rgba(233,169,60,.45);
+  border-bottom:1px solid rgba(233,169,60,.45);
+}
+.limbs li{
+  padding:22px 14px 24px; text-align:center;
+  border-inline-start:1px solid rgba(233,169,60,.22);
+}
+.limbs li:first-child{border-inline-start:0}
+.limbs .n{
+  display:block; font:400 12px/1 var(--display); color:var(--gold);
+  opacity:.75; margin-bottom:10px;
+}
+.limbs .nm{
+  display:block; font:400 clamp(19px,3vw,27px)/1.2 var(--display); color:#fff;
+}
+.limbs .gl{
+  display:block; font:400 12.5px/1.5 var(--deva); color:#e8cfc9;
+  margin-top:7px;
+}
+.limbs-note{
+  font:400 13px/1.7 var(--deva); color:#dcbdb7;
+  margin:16px 0 0; padding-bottom:64px;
+}
+
+/* ── सामग्री ─────────────────────────────────────────────────────────────── */
+section{padding:64px 0}
+h2{
+  font:800 clamp(22px,3.4vw,30px)/1.3 var(--head);
+  margin:0 0 8px; color:var(--brand);
+}
+.sub{font:400 15px/1.7 var(--deva);color:var(--muted);margin:0 0 34px;max-width:56ch}
+
+.groups{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(248px,1fr))}
+.grp{
+  background:var(--card); border:1px solid var(--rule); border-radius:14px;
+  padding:24px 24px 26px;
+}
+.grp h3{
+  font:700 17px/1.4 var(--head); margin:0 0 14px; color:var(--ink);
+  padding-bottom:12px; border-bottom:1px solid var(--rule);
+}
+.grp ul{margin:0;padding:0;list-style:none}
+.grp li{
+  font:400 15px/1.9 var(--deva); color:var(--ink-2);
+  display:flex; gap:10px;
+}
+.grp li::before{
+  content:"·"; color:var(--saffron); font-weight:700; flex:none;
+}
+
+/* ── इमेलको खण्ड — समीक्षकले खोज्ने कुरा यही हो ───────────────────────────── */
+.mail{background:var(--card);border-block:1px solid var(--rule)}
+.mail dl{margin:0;display:grid;gap:0}
+.mail div{
+  display:grid; grid-template-columns:minmax(140px,220px) 1fr; gap:18px;
+  padding:18px 0; border-top:1px solid var(--rule);
+}
+.mail div:first-child{border-top:0}
+.mail dt{font:600 15px/1.7 var(--deva);color:var(--brand)}
+.mail dd{margin:0;font:400 15.5px/1.75 var(--deva);color:var(--ink-2)}
+@media (max-width:620px){
+  .mail div{grid-template-columns:1fr;gap:4px}
+}
+
+.stamp{
+  display:inline-block; margin-top:30px; padding:11px 18px;
+  border:1px dashed var(--rule-strong); border-radius:10px;
+  font:500 14px/1.6 var(--deva); color:var(--muted); background:var(--paper);
+}
+
+/* ── पाउ ────────────────────────────────────────────────────────────────── */
+footer{background:var(--brand-deep);color:#e8cfc9;padding:44px 0 52px}
+footer a{color:var(--gold-hi);text-decoration-thickness:1px;text-underline-offset:3px}
+.foot{display:flex;flex-wrap:wrap;gap:10px 40px;align-items:baseline}
+.foot p{margin:0;font:400 14.5px/1.8 var(--deva)}
+.foot .who{font:400 22px/1 var(--display);color:#fff}
+
+/* ⚠ दायरा दुवैतिर बाँधिएको छ, माथिबाट मात्र होइन. पहिले `max-width:760px`
+   मात्र थियो, र ४२० भन्दा सानोमा पनि लागू हुन्थ्यो — त्यहाँ
+   `.limbs li:nth-child(-n+2)` (०,२,१) ले तलको `.limbs li` (०,१,१) लाई
+   जित्थ्यो र «वार» माथिको धर्को हराउँथ्यो. दुई स्तम्भको नियम एक स्तम्भमा
+   पर्न दिनु हुँदैन. */
+@media (max-width:760px) and (min-width:421px){
+  .limbs{grid-template-columns:repeat(2,1fr)}
+  .limbs li{border-top:1px solid rgba(233,169,60,.18)}
+  .limbs li:nth-child(-n+2){border-top:0}
+  .limbs li:nth-child(odd){border-inline-start:0}
+  .top{padding-top:52px}
+  section{padding:48px 0}
+}
+@media (max-width:420px){
+  .limbs{grid-template-columns:1fr}
+  .limbs li{border-inline-start:0;border-top:1px solid rgba(233,169,60,.18)}
+  .limbs li:first-child{border-top:0}
+}
+
+/* पाना खुल्दा एकपटक मात्र — अङ्ग एक-एक गरी उघ्रिन्छन्. */
+@media (prefers-reduced-motion:no-preference){
+  .limbs li{animation:rise .55s cubic-bezier(.2,.7,.3,1) both}
+  .limbs li:nth-child(1){animation-delay:.10s}
+  .limbs li:nth-child(2){animation-delay:.18s}
+  .limbs li:nth-child(3){animation-delay:.26s}
+  .limbs li:nth-child(4){animation-delay:.34s}
+  .limbs li:nth-child(5){animation-delay:.42s}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <h1 class="mark">कर्मसाक्षी</h1>
+    <p class="tagline">पण्डितको दैनिक साथी</p>
+    <p class="lede">
+      पञ्चाङ्ग हेर्न एउटा किताब, मुहूर्त जोड्न अर्को, कुण्डली बनाउन तेस्रो —
+      कर्मसाक्षीले ती सबै एउटै ठाउँमा ल्याउँछ।
+    </p>
+
+    <ol class="limbs">
+      <li><span class="n">१</span><span class="nm">तिथि</span><span class="gl">चन्द्रमाको कला</span></li>
+      <li><span class="n">२</span><span class="nm">वार</span><span class="gl">हप्ताको दिन</span></li>
+      <li><span class="n">३</span><span class="nm">नक्षत्र</span><span class="gl">चन्द्रमाको ठाउँ</span></li>
+      <li><span class="n">४</span><span class="nm">योग</span><span class="gl">सूर्य–चन्द्रको जोड</span></li>
+      <li><span class="n">५</span><span class="nm">करण</span><span class="gl">तिथिको आधा</span></li>
+    </ol>
+    <p class="limbs-note">
+      पञ्चाङ्ग भनेकै यी पाँच अङ्ग हुन्। कर्मसाक्षीले हरेक दिनको यी पाँचै,
+      ठाउँअनुसारको सूर्योदय हेरेर गणना गर्छ।
+    </p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>एपभित्र के-के छ</h2>
+    <p class="sub">
+      कर्मकाण्डका विधि, ज्योतिषका गणना र ग्रन्थ — पुरोहितलाई दिनभरि चाहिने कुरा।
+    </p>
+
+    <div class="groups">
+      <div class="grp">
+        <h3>दिन र समय</h3>
+        <ul>
+          <li>दैनिक पञ्चाङ्ग</li>
+          <li>पात्रो र क्यालेन्डर</li>
+          <li>मुहूर्त — चौघडिया, होरा, राहुकाल, साइत</li>
+          <li>ग्रह गोचर</li>
+        </ul>
+      </div>
+
+      <div class="grp">
+        <h3>कुण्डली</h3>
+        <ul>
+          <li>जन्म विवरणबाट सविस्तार कुण्डली</li>
+          <li>कुण्डली मिलान — अष्टकूट, ३६ गुण</li>
+          <li>दशा, योग र षड्बल</li>
+          <li>लग्नपत्रिका</li>
+        </ul>
+      </div>
+
+      <div class="grp">
+        <h3>सन्दर्भ</h3>
+        <ul>
+          <li>गोत्र र प्रवर — थरअनुसार</li>
+          <li>२७ नक्षत्रको पूरा विवरण</li>
+          <li>सङ्कल्प — छोटो, मध्यम, लामो</li>
+          <li>नामकरण र अवकहडा</li>
+        </ul>
+      </div>
+
+      <div class="grp">
+        <h3>पुस्तकालय</h3>
+        <ul>
+          <li>श्रीमद्भागवत महापुराण</li>
+          <li>दुर्गा सप्तशती</li>
+          <li>पाराशर होरा शास्त्र</li>
+          <li>मूल, छन्द र नेपाली अर्थसहित</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="stamp">अहिले निर्माणाधीन — छिट्टै सार्वजनिक हुँदैछ।</p>
+  </div>
+</section>
+
+<section class="mail">
+  <div class="wrap">
+    <h2>हामी कस्तो इमेल पठाउँछौँ</h2>
+    <p class="sub">
+      कर्मसाक्षीले प्रयोगकर्तालाई काम परेको बेला मात्र इमेल पठाउँछ।
+      प्रचारका इमेल पठाउँदैन।
+    </p>
+
+    <dl>
+      <div>
+        <dt>खाता खोल्दा</dt>
+        <dd>दर्ता पूरा गर्न एउटा एकपटके कोड (OTP)।</dd>
+      </div>
+      <div>
+        <dt>पासवर्ड बिर्सँदा</dt>
+        <dd>पासवर्ड फेर्न एउटा एकपटके कोड। प्रयोगकर्ता आफैँले मागेपछि मात्र।</dd>
+      </div>
+      <div>
+        <dt>सदस्यता</dt>
+        <dd>सदस्यता सुरु भएको वा सकिन लागेको जानकारी।</dd>
+      </div>
+      <div>
+        <dt>ठेगाना कहाँबाट</dt>
+        <dd>प्रयोगकर्ता आफैँले एपमा खाता खोल्दा दिएको ठेगाना। कतैबाट किनिएको वा जम्मा गरिएको सूची छैन।</dd>
+      </div>
+      <div>
+        <dt>पठाउने ठेगाना</dt>
+        <dd>noreply@karmasaakshi.com</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <p class="who">कर्मसाक्षी</p>
+    <p>नेपाल</p>
+    <p>सम्पर्क — <a href="mailto:help.karmasaakshi@gmail.com">help.karmasaakshi@gmail.com</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
