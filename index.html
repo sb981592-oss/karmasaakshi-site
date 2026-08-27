@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>कर्मसाक्षी — पण्डितको दैनिक साथी</title>
 <meta name="description" content="पञ्चाङ्ग, पात्रो, मुहूर्त, कुण्डली र कर्मकाण्डका विधि — एउटै ठाउँमा। नेपाली पुरोहितका लागि बनेको एप।">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23780b1a'/><text y='72' x='50' text-anchor='middle' font-size='62' fill='%23e9a93c'>क</text></svg>">
+<link rel="icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gotu&family=Martel:wght@400;700;800;900&family=Mukta:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -48,9 +48,20 @@ a{color:var(--brand-2)}
   background:linear-gradient(to bottom,transparent,rgba(0,0,0,.18));
   pointer-events:none;
 }
+/* लोगो र नाम सँगै. लोगोमा नाम छैन — दियो र ग्रहपथ मात्र — त्यसैले नाम
+   टाइपले लेखिन्छ. सुनौलो रेखा भएकाले सिन्दूर भुइँमै सिधै बस्छ; पछाडि
+   कागतको पाटो राख्नु पर्दैन, र नराख्दा शिर हलुका रहन्छ. */
 .mark{
-  font:400 clamp(46px,9vw,86px)/1 var(--display);
-  margin:0; color:#fff; letter-spacing:.005em;
+  margin:0; display:flex; align-items:center; gap:clamp(14px,2.6vw,26px);
+  flex-wrap:wrap;
+}
+.mark img{
+  display:block; width:clamp(76px,12vw,112px); height:auto; flex:none;
+  filter:drop-shadow(0 6px 18px rgba(0,0,0,.3));
+}
+.mark span{
+  font:400 clamp(42px,8.4vw,80px)/1 var(--display); color:#fff;
+  letter-spacing:.005em;
 }
 .tagline{
   font:500 clamp(15px,2.4vw,19px)/1.6 var(--deva);
@@ -137,12 +148,38 @@ h2{
   font:500 14px/1.6 var(--deva); color:var(--muted); background:var(--paper);
 }
 
+/* ── सम्पर्क ─────────────────────────────────────────────────────────────── */
+.card{
+  display:flex; gap:28px; align-items:center; flex-wrap:wrap;
+  background:var(--card); border:1px solid var(--rule); border-radius:16px;
+  padding:26px 30px;
+}
+.mug{
+  width:124px; height:124px; border-radius:50%; object-fit:cover; flex:none;
+  border:3px solid var(--saffron-soft,#f6d9a8);
+}
+.card-t{flex:1 1 260px;min-width:0}
+.nm{margin:0;font:800 22px/1.3 var(--head);color:var(--brand)}
+.role{margin:2px 0 16px;font:400 14px/1.6 var(--deva);color:var(--muted)}
+.reach{
+  margin:0; display:grid; gap:6px 18px;
+  grid-template-columns:auto 1fr; align-items:baseline;
+}
+.reach dt{font:600 13px/1.7 var(--deva);color:var(--muted)}
+.reach dd{margin:0;font:500 16px/1.7 var(--deva);color:var(--ink)}
+.reach a{color:var(--brand-2);text-decoration:none;border-bottom:1px solid var(--rule-strong)}
+.reach a:hover{border-bottom-color:var(--brand-2)}
+@media (max-width:480px){
+  .card{gap:20px;padding:22px}
+  .mug{width:96px;height:96px}
+}
+
 /* ── पाउ ────────────────────────────────────────────────────────────────── */
-footer{background:var(--brand-deep);color:#e8cfc9;padding:44px 0 52px}
+footer{background:var(--brand-deep);color:#e8cfc9;padding:38px 0 44px}
 footer a{color:var(--gold-hi);text-decoration-thickness:1px;text-underline-offset:3px}
-.foot{display:flex;flex-wrap:wrap;gap:10px 40px;align-items:baseline}
+.foot{display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center}
 .foot p{margin:0;font:400 14.5px/1.8 var(--deva)}
-.foot .who{font:400 22px/1 var(--display);color:#fff}
+.foot-logo{width:46px;height:auto;flex:none;opacity:.92}
 
 /* ⚠ दायरा दुवैतिर बाँधिएको छ, माथिबाट मात्र होइन. पहिले `max-width:760px`
    मात्र थियो, र ४२० भन्दा सानोमा पनि लागू हुन्थ्यो — त्यहाँ
@@ -179,7 +216,10 @@ footer a{color:var(--gold-hi);text-decoration-thickness:1px;text-underline-offse
 
 <header class="top">
   <div class="wrap">
-    <h1 class="mark">कर्मसाक्षी</h1>
+    <h1 class="mark">
+      <img src="logo.png" alt="" width="420" height="372">
+      <span>कर्मसाक्षी</span>
+    </h1>
     <p class="tagline">पण्डितको दैनिक साथी</p>
     <p class="lede">
       पञ्चाङ्ग हेर्न एउटा किताब, मुहूर्त जोड्न अर्को, कुण्डली बनाउन तेस्रो —
@@ -286,11 +326,33 @@ footer a{color:var(--gold-hi);text-decoration-thickness:1px;text-underline-offse
   </div>
 </section>
 
+<section id="sampark">
+  <div class="wrap">
+    <h2>सम्पर्क</h2>
+    <p class="sub">कर्मसाक्षीबारे केही सोध्नु छ भने सिधै भन्नुहोस्।</p>
+
+    <div class="card">
+      <img class="mug" src="mohan.jpg" alt="मोहन पोखरेल" width="640" height="640" loading="lazy">
+      <div class="card-t">
+        <p class="nm">मोहन पोखरेल</p>
+        <p class="role">कर्मसाक्षीका निर्माता</p>
+        <dl class="reach">
+          <dt>फोन</dt>
+          <dd><a href="tel:+9779815067270">९८१५०६७२७०</a></dd>
+          <dt>इमेल</dt>
+          <dd><a href="mailto:help.karmasaakshi@gmail.com">help.karmasaakshi@gmail.com</a></dd>
+          <dt>ठाउँ</dt>
+          <dd>नेपाल</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap foot">
-    <p class="who">कर्मसाक्षी</p>
-    <p>नेपाल</p>
-    <p>सम्पर्क — <a href="mailto:help.karmasaakshi@gmail.com">help.karmasaakshi@gmail.com</a></p>
+    <img class="foot-logo" src="logo.png" alt="" width="420" height="372">
+    <p>© २०२६ कर्मसाक्षी · <a href="https://karmasaakshi.com">karmasaakshi.com</a></p>
   </div>
 </footer>
 
