@@ -5,7 +5,17 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>कर्मसाक्षी — पण्डित, पुरोहित र ज्योतिषीका लागि सम्पूर्ण डिजिटल साथी</title>
 <meta name="description" content="पञ्चाङ्ग, पात्रो, कुण्डली, फलादेश, कर्मकाण्ड विधि, यजमान व्यवस्थापन र पुस्तकालय — अब विन्डोज कम्प्युटर तथा मोबाइलमा १००% अफलाइन।">
+<meta name="theme-color" content="#780b1a">
+<link rel="canonical" href="https://karmasaakshi.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="कर्मसाक्षी">
+<meta property="og:url" content="https://karmasaakshi.com/">
+<meta property="og:title" content="कर्मसाक्षी — पण्डित, पुरोहित र ज्योतिषीका लागि सम्पूर्ण डिजिटल साथी">
+<meta property="og:description" content="पञ्चाङ्ग, पात्रो, कुण्डली, कर्मकाण्ड विधि र पुस्तकालय — Android मोबाइल र Windows कम्प्युटरमा। यहीँबाट डाउनलोड गर्नुहोस्।">
+<meta property="og:image" content="https://karmasaakshi.com/logo.png">
+<meta name="twitter:card" content="summary">
 <link rel="icon" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gotu&family=Martel:wght@400;600;700;800;900&family=Mukta:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -115,6 +125,16 @@ a:hover{color:var(--brand)}
 .btn-secondary:hover{
   background:rgba(255,255,255,.22); border-color:#fff; transform:translateY(-2px);
 }
+.btn-play{
+  background:#fff; color:var(--brand-deep) !important; font-weight:700; font-size:17px;
+  padding:15px 26px; border-radius:12px; display:inline-flex; align-items:center; gap:12px;
+  box-shadow:0 6px 22px rgba(0,0,0,.18); transition:all .2s;
+}
+.btn-play:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.26)}
+.btn-play small,.btn-primary small{display:block;font-weight:500;font-size:12.5px;line-height:1.2;opacity:.8}
+.btn-play b,.btn-primary b{display:block;line-height:1.3}
+.hero-more{color:#fbe3dd !important;font-size:14.5px;text-decoration:underline;text-underline-offset:3px}
+.hero-more:hover{color:#fff !important}
 .hero-specs{
   display:flex; gap:20px; flex-wrap:wrap; font-size:13.5px; color:#f0d5cf;
 }
@@ -257,6 +277,17 @@ a:hover{color:var(--brand)}
   background:#fff; border:1px solid var(--rule-strong); color:var(--ink) !important;
 }
 .dl-p-btn.btn-android:hover{border-color:var(--brand);background:var(--gold-soft)}
+.dl-p-btn.btn-play-main{
+  background:linear-gradient(135deg,#1e8e3e,#137333); color:#fff !important;
+  box-shadow:0 4px 14px rgba(19,115,51,.28);
+}
+.dl-p-btn.btn-play-main:hover{background:linear-gradient(135deg,#137333,#0d5626);transform:translateY(-1px)}
+.dl-p-btn.btn-alt{
+  background:#fff; border:1.5px solid var(--rule-strong); color:var(--ink) !important;
+  box-shadow:none; font-size:14px; padding:10px 14px;
+}
+.dl-p-btn.btn-alt:hover{border-color:var(--brand);background:var(--gold-soft)}
+.dl-p-note{font-size:12.5px;line-height:1.5;color:var(--muted);margin:4px 2px 0}
 
 /* इन्स्टलेशन गाइड */
 .install-guide{
@@ -337,7 +368,8 @@ footer{
 .foot-brand{display:flex;align-items:center;gap:14px}
 .foot-brand img{width:46px;height:auto}
 .foot-brand span{font:700 22px/1 var(--display);color:#fff}
-.foot-links{display:flex;gap:20px;list-style:none;margin:0;padding:0}
+.foot-links{display:flex;flex-wrap:wrap;gap:10px 20px;list-style:none;margin:0;padding:0}
+.nav-cta{white-space:nowrap}
 .foot-links a{color:#f5d7cf;font-size:14.5px}
 .foot-links a:hover{color:#fff;text-decoration:underline}
 .foot-bottom{
@@ -356,6 +388,15 @@ footer{
   .dl-box{padding:32px 20px}
   .contact-box{padding:24px;text-align:center;justify-content:center}
   .contact-dl{grid-template-columns:1fr;gap:4px}
+  .wrap{padding-inline:16px}
+  .brand-link{font-size:21px;gap:9px}
+  .brand-link img{width:36px}
+  .nav-cta{padding:9px 16px;font-size:14px}
+  .hero-btns{flex-direction:column;align-items:stretch;gap:12px}
+  .btn-primary,.btn-play{justify-content:flex-start}
+  .install-guide{padding:22px 18px}
+  .dl-platform-card{padding:18px}
+  .req-table th{width:42%}
 }
 </style>
 </head>
@@ -375,7 +416,7 @@ footer{
       <li><a href="#faq">प्रायः सोधिने प्रश्न</a></li>
       <li><a href="#contact">सम्पर्क</a></li>
     </ul>
-    <a href="#download" class="nav-cta">कम्प्युटरमा डाउनलोड ⇩</a>
+    <a href="#download" class="nav-cta">डाउनलोड ⇩</a>
   </div>
 </header>
 
@@ -388,18 +429,20 @@ footer{
       </div>
       <h1>पण्डित, पुरोहित र ज्योतिषीका लागि सम्पूर्ण डिजिटल साथी</h1>
       <p class="hero-sub">
-        पञ्चाङ्ग, नेपाली पात्रो, कुण्डली, फलादेश, कर्मकाण्ड विधि, यजमान व्यवस्थापन र बृहत् पुस्तकालय — अब हजुरको कम्प्युटर (Windows PC) मा १००% शुद्ध, प्रामाणिक र अफलाइन।
+        पञ्चाङ्ग, नेपाली पात्रो, कुण्डली, फलादेश, कर्मकाण्ड विधि, यजमान व्यवस्थापन र बृहत् पुस्तकालय — हजुरको मोबाइल (Android) र कम्प्युटर (Windows) दुवैमा, शुद्ध, प्रामाणिक र अफलाइन।
       </p>
 
       <div class="hero-btns">
-        <a href="https://github.com/sb981592-oss/karmasaakshi-site/releases/latest/download/Karmasaakshi_setup.exe" download="Karmasaakshi_setup.exe" class="btn-primary">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.802"/></svg>
-          Windows का लागि डाउनलोड (.exe - ६४-बिट)
+        <a href="https://play.google.com/store/apps/details?id=com.poojaaaja.karmasakshi" target="_blank" rel="noopener" class="btn-play">
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="#34a853" d="M3.6 1.8 13.8 12 3.6 22.2c-.4-.2-.6-.7-.6-1.2V3c0-.5.2-1 .6-1.2z"/><path fill="#fbbc04" d="m17.2 8.6-3.4 3.4 3.4 3.4 3.9-2.2c.9-.5.9-1.8 0-2.3z"/><path fill="#4285f4" d="M3.6 1.8c.3-.2.8-.2 1.2 0l12.4 6.8-3.4 3.4z"/><path fill="#ea4335" d="M13.8 12l3.4 3.4-12.4 6.8c-.4.2-.9.2-1.2 0z"/></svg>
+          <span><small>मोबाइलका लागि</small><b>Google Play बाट लिनुहोस्</b></span>
         </a>
-        <a href="#download" class="btn-secondary">
-          अन्य संस्करण (Android / MSI) ↓
+        <a href="https://github.com/sb981592-oss/karmasaakshi-site/releases/latest/download/Karmasaakshi_setup.exe" class="btn-primary">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.802"/></svg>
+          <span><small>कम्प्युटरका लागि (६० MB)</small><b>Windows मा डाउनलोड</b></span>
         </a>
       </div>
+      <p style="margin:-12px 0 24px"><a href="#download" class="hero-more">APK, MSI र इन्स्टल गर्ने तरिका ↓</a></p>
 
       <div class="hero-specs">
         <span>✓ १००% अफलाइन चल्ने</span>
@@ -413,8 +456,8 @@ footer{
       <div class="hero-card-header">
         <img src="logo.png" alt="कर्मसाक्षी">
         <div>
-          <p class="hero-card-title">कर्मसाक्षी डेस्कटप</p>
-          <p class="hero-card-sub">विन्डोज पीसी संस्करण (Windows 10/11)</p>
+          <p class="hero-card-title">कर्मसाक्षी</p>
+          <p class="hero-card-sub">Android मोबाइल · Windows 10/11 कम्प्युटर</p>
         </div>
       </div>
       <ul class="card-mini-features">
@@ -527,10 +570,10 @@ footer{
 <section id="download" class="download-section">
   <div class="wrap">
     <div class="dl-box">
-      <span class="dl-badge">आधिकारिक डेस्कटप डाउनलोड</span>
+      <span class="dl-badge">आधिकारिक डाउनलोड</span>
       <h2>कर्मसाक्षी एप्लिकेसन डाउनलोड गर्नुहोस्</h2>
       <p class="dl-lead">
-        कर्मसाक्षीको आधिकारिक विन्डोज डेस्कटप संस्करण सिधै यहाँबाट डाउनलोड गर्नुहोस्। सुरक्षित, छिटो र कम्प्युटरमा सजिलै इन्स्टल गर्न सकिने।
+        मोबाइलमा Google Play बाट, कम्प्युटरमा यहीँबाट सिधै। एउटै खाताले दुवैमा चल्छ।
       </p>
 
       <div class="dl-cards">
@@ -549,14 +592,12 @@ footer{
             </p>
           </div>
           <div style="display:flex;flex-direction:column;gap:10px;">
-            <a href="https://github.com/sb981592-oss/karmasaakshi-site/releases/latest/download/Karmasaakshi_setup.exe" download="Karmasaakshi_setup.exe" class="dl-p-btn btn-win">
+            <a href="https://github.com/sb981592-oss/karmasaakshi-site/releases/latest/download/Karmasaakshi_setup.exe" class="dl-p-btn btn-win">
               ⇩ Windows Setup (.exe) सिधै डाउनलोड (~६० MB)
             </a>
-            <div style="display:flex;gap:8px;flex-wrap:wrap;">
-              <a href="https://github.com/sb981592-oss/karmasaakshi-site/releases/latest/download/Karmasaakshi_setup.msi" download="Karmasaakshi_setup.msi" class="dl-p-btn" style="flex:1;min-width:140px;background:#fff;border:1.5px solid var(--rule-strong);color:var(--ink);box-shadow:none;font-size:13.5px;padding:9px 12px;text-align:center;">
-                वैकल्पिक .msi प्याकेज
-              </a>
-            </div>
+            <a href="https://github.com/sb981592-oss/karmasaakshi-site/releases/latest/download/Karmasaakshi_setup.msi" class="dl-p-btn btn-alt">
+              वैकल्पिक .msi प्याकेज
+            </a>
           </div>
         </div>
 
@@ -575,12 +616,13 @@ footer{
             </p>
           </div>
           <div style="display:flex;flex-direction:column;gap:8px;">
-            <a href="https://play.google.com/store/apps/details?id=com.poojaaaja.karmasakshi" target="_blank" class="dl-p-btn btn-android">
-              Google Play मा हेर्नुहोस्
+            <a href="https://play.google.com/store/apps/details?id=com.poojaaaja.karmasakshi" target="_blank" rel="noopener" class="dl-p-btn btn-play-main">
+              ▶ Google Play बाट इन्स्टल गर्नुहोस्
             </a>
-            <a href="https://github.com/sb981592-oss/karmasaakshi-site/releases/latest/download/Karmasaakshi.apk" download="Karmasaakshi.apk" class="dl-p-btn" style="background:#fff;border:1.5px solid var(--rule-strong);color:var(--ink);box-shadow:none;">
+            <a href="https://github.com/sb981592-oss/karmasaakshi-site/releases/latest/download/Karmasaakshi.apk" class="dl-p-btn btn-alt">
               ⇩ Direct APK डाउनलोड (~१८७ MB)
             </a>
+            <p class="dl-p-note">Google Play बाट लिए नयाँ संस्करण आफैँ आउँछ। Play नचल्ने फोनमा मात्र APK प्रयोग गर्नुहोस्।</p>
           </div>
         </div>
       </div>
