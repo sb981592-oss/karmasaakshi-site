@@ -2,346 +2,682 @@
 <html lang="ne">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>कर्मसाक्षी — पण्डितको दैनिक साथी</title>
-<meta name="description" content="पञ्चाङ्ग, पात्रो, मुहूर्त, कुण्डली र कर्मकाण्डका विधि — एउटै ठाउँमा। नेपाली पुरोहितका लागि बनेको एप।">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>कर्मसाक्षी — पण्डित, पुरोहित र ज्योतिषीका लागि सम्पूर्ण डिजिटल साथी</title>
+<meta name="description" content="पञ्चाङ्ग, पात्रो, कुण्डली, फलादेश, कर्मकाण्ड विधि, यजमान व्यवस्थापन र पुस्तकालय — अब विन्डोज कम्प्युटर तथा मोबाइलमा १००% अफलाइन।">
 <link rel="icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gotu&family=Martel:wght@400;700;800;900&family=Mukta:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gotu&family=Martel:wght@400;600;700;800;900&family=Mukta:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ── कर्मसाक्षीको परिचय-पृष्ठ ───────────────────────────────────────────────
-   रङ र अक्षर एपकै `theme.css` बाट लिइएका हुन् — यो पाना र एप एउटै कुरा हुन्,
-   त्यसैले दुई ठाउँमा दुई पहिचान हुनु हुँदैन.
-
-   एउटा कुरा उल्टाइएको छ: एपमा कागज पृष्ठभूमि हो र सिन्दूर छाप; यहाँ शिरमा
-   सिन्दूर नै भुइँ हो, र कागज तल आउँछ. मन्दिरको ढुङ्गे पाटीजस्तो देखियोस्
-   भनेर — पञ्चाङ्गका पाँच अङ्ग त्यहीँ कुँदिएका छन्. */
 :root{
-  --brand:#780b1a; --brand-2:#9c1526; --brand-deep:#4d0710;
-  --saffron:#e4922b; --gold:#e9a93c; --gold-hi:#f7d07a;
-  --paper:#f6efe8; --card:#fff; --rule:#e7dcd1; --rule-strong:#d7c7b8;
-  --ink:#241a17; --ink-2:#4a3b36; --muted:#8a7a72;
-  --deva:"Mukta",system-ui,sans-serif;
+  --brand:#780b1a; --brand-2:#9c1526; --brand-deep:#4a0710;
+  --saffron:#e4922b; --gold:#e9a93c; --gold-hi:#f7d07a; --gold-soft:#fff7e6;
+  --paper:#faf5ee; --paper-2:#f2e9dc; --card:#ffffff;
+  --rule:#e6dacb; --rule-strong:#d2c1ad;
+  --ink:#201614; --ink-2:#4a3934; --muted:#7d6c65;
+  --accent-green:#1e7e34; --green-soft:#eaf7ee;
+  --deva:"Mukta",system-ui,-apple-system,sans-serif;
   --head:"Martel",Georgia,serif;
   --display:"Gotu","Martel",serif;
+  --shadow-sm:0 2px 8px rgba(32,22,20,.05);
+  --shadow-md:0 6px 20px rgba(32,22,20,.08);
+  --shadow-lg:0 12px 36px rgba(74,7,16,.14);
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
   margin:0; background:var(--paper); color:var(--ink);
   font:400 17px/1.75 var(--deva);
 }
-.wrap{max-width:1080px;margin-inline:auto;padding-inline:24px}
-a{color:var(--brand-2)}
-:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
+a{color:var(--brand-2);text-decoration:none}
+a:hover{color:var(--brand)}
+.wrap{max-width:1120px;margin-inline:auto;padding-inline:24px}
 
-/* ── शिर ─────────────────────────────────────────────────────────────────── */
-.top{
-  background:
-    radial-gradient(120% 90% at 50% -20%, var(--brand-2) 0%, var(--brand) 45%, var(--brand-deep) 100%);
-  color:#fff3f1; padding:72px 0 0; position:relative; overflow:hidden;
+/* ── शीर्ष नेभिगेसन (Navbar) ────────────────────────── */
+.nav-bar{
+  position:sticky; top:0; z-index:100;
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--rule);
+  padding:12px 0;
 }
-/* धूपको धुवाँजस्तो हल्का उज्यालो — सजावट होइन, भुइँलाई सपाट हुनबाट जोगाउने. */
-.top::after{
-  content:""; position:absolute; inset:auto 0 -1px 0; height:120px;
-  background:linear-gradient(to bottom,transparent,rgba(0,0,0,.18));
-  pointer-events:none;
+.nav-inner{
+  display:flex; align-items:center; justify-content:space-between; gap:20px;
 }
-/* लोगो र नाम सँगै. लोगोमा नाम छैन — दियो र ग्रहपथ मात्र — त्यसैले नाम
-   टाइपले लेखिन्छ. सुनौलो रेखा भएकाले सिन्दूर भुइँमै सिधै बस्छ; पछाडि
-   कागतको पाटो राख्नु पर्दैन, र नराख्दा शिर हलुका रहन्छ. */
-.mark{
-  margin:0; display:flex; align-items:center; gap:clamp(14px,2.6vw,26px);
-  flex-wrap:wrap;
+.brand-link{
+  display:flex; align-items:center; gap:12px; color:var(--brand-deep);
+  font:700 24px/1 var(--display); text-decoration:none;
 }
-.mark img{
-  display:block; width:clamp(76px,12vw,112px); height:auto; flex:none;
-  filter:drop-shadow(0 6px 18px rgba(0,0,0,.3));
+.brand-link img{width:42px;height:auto;flex:none}
+.nav-links{
+  display:flex; align-items:center; gap:24px; list-style:none; margin:0; padding:0;
 }
-.mark span{
-  font:400 clamp(42px,8.4vw,80px)/1 var(--display); color:#fff;
-  letter-spacing:.005em;
+.nav-links a{
+  font:500 16px/1 var(--deva); color:var(--ink-2); transition:color .2s;
 }
-.tagline{
-  font:500 clamp(15px,2.4vw,19px)/1.6 var(--deva);
-  color:var(--gold-hi); margin:12px 0 0; letter-spacing:.02em;
+.nav-links a:hover{color:var(--brand)}
+.nav-cta{
+  background:linear-gradient(135deg,var(--brand-2),var(--brand));
+  color:#fff !important; padding:10px 20px; border-radius:999px;
+  font-weight:600; font-size:15px; box-shadow:0 3px 10px rgba(120,11,26,.25);
+  transition:all .2s;
 }
-.lede{
-  font:300 clamp(17px,2.6vw,21px)/1.85 var(--deva);
-  color:#f6e6e2; margin:26px 0 0; max-width:44ch;
+.nav-cta:hover{
+  background:linear-gradient(135deg,var(--brand),var(--brand-deep));
+  transform:translateY(-1px); box-shadow:0 5px 14px rgba(120,11,26,.35);
 }
 
-/* ── हस्ताक्षर: पञ्चाङ्गका पाँच अङ्ग ────────────────────────────────────────
-   क्रमाङ्क सजावट होइन — «पञ्चाङ्ग» भन्नुको अर्थ नै पाँच अङ्ग हो, र क्रम
-   गणनाको हिस्सा हो. त्यसैले १–५ लेखिएको छ. */
+/* ── हिरो खण्ड (Hero) ────────────────────────────────── */
+.hero{
+  background:radial-gradient(110% 85% at 50% -10%, var(--brand-2) 0%, var(--brand) 50%, var(--brand-deep) 100%);
+  color:#fff3f1; padding:70px 0 80px; position:relative; overflow:hidden;
+}
+.hero::after{
+  content:""; position:absolute; inset:auto 0 -1px 0; height:70px;
+  background:linear-gradient(to bottom,transparent,var(--paper)); pointer-events:none;
+}
+.hero-grid{
+  display:grid; grid-template-columns:1.2fr .8fr; gap:40px; align-items:center;
+}
+.pill-badge{
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(233,169,60,.16); border:1px solid rgba(247,208,122,.45);
+  color:var(--gold-hi); padding:6px 14px; border-radius:999px;
+  font:600 13.5px/1 var(--deva); margin-bottom:20px;
+}
+.hero h1{
+  font:800 clamp(34px,5.2vw,50px)/1.2 var(--head); color:#fff;
+  margin:0 0 18px; letter-spacing:-.01em;
+}
+.hero-sub{
+  font:300 clamp(17px,2.2vw,20px)/1.8 var(--deva); color:#fae7e4;
+  margin:0 0 32px; max-width:54ch;
+}
+.hero-btns{
+  display:flex; gap:16px; flex-wrap:wrap; align-items:center; margin-bottom:28px;
+}
+.btn-primary{
+  background:linear-gradient(135deg,#ffad33,#e4922b);
+  color:#3a1804 !important; font-weight:700; font-size:17px;
+  padding:15px 28px; border-radius:12px; display:inline-flex; align-items:center; gap:12px;
+  box-shadow:0 6px 22px rgba(228,146,43,.4); transition:all .2s; border:none; cursor:pointer;
+}
+.btn-primary:hover{
+  background:linear-gradient(135deg,#ffb74d,#d38320);
+  transform:translateY(-2px); box-shadow:0 8px 28px rgba(228,146,43,.55);
+}
+.btn-secondary{
+  background:rgba(255,255,255,.12); color:#fff !important; font-weight:600; font-size:16px;
+  padding:14px 24px; border-radius:12px; display:inline-flex; align-items:center; gap:10px;
+  border:1px solid rgba(255,255,255,.28); transition:all .2s;
+}
+.btn-secondary:hover{
+  background:rgba(255,255,255,.22); border-color:#fff; transform:translateY(-2px);
+}
+.hero-specs{
+  display:flex; gap:20px; flex-wrap:wrap; font-size:13.5px; color:#f0d5cf;
+}
+.hero-specs span{display:flex;align-items:center;gap:6px}
+
+/* हिरो कार्ड / प्रिभ्यू */
+.hero-card{
+  background:rgba(255,255,255,.08); border:1px solid rgba(233,169,60,.35);
+  border-radius:20px; padding:30px; box-shadow:0 20px 50px rgba(0,0,0,.3);
+  backdrop-filter:blur(8px);
+}
+.hero-card-header{
+  display:flex; align-items:center; gap:16px; margin-bottom:24px; padding-bottom:18px;
+  border-bottom:1px solid rgba(233,169,60,.25);
+}
+.hero-card-header img{width:64px;height:auto}
+.hero-card-title{font:700 22px/1.2 var(--head);color:#fff;margin:0}
+.hero-card-sub{font:400 13.5px/1.5 var(--deva);color:var(--gold-hi);margin:4px 0 0}
+.card-mini-features{
+  list-style:none; margin:0; padding:0; display:grid; gap:12px;
+}
+.card-mini-features li{
+  display:flex; align-items:flex-start; gap:10px; font-size:14.5px; color:#fbebe8;
+  background:rgba(0,0,0,.15); padding:10px 14px; border-radius:8px;
+}
+.check-icon{color:var(--gold);font-weight:bold;flex:none}
+
+/* ── पञ्चाङ्ग पट्टी ──────────────────────────────────── */
 .limbs{
-  margin:56px 0 0; padding:0; list-style:none;
+  margin:40px 0 0; padding:0; list-style:none;
   display:grid; grid-template-columns:repeat(5,1fr);
-  border-top:1px solid rgba(233,169,60,.45);
-  border-bottom:1px solid rgba(233,169,60,.45);
+  background:var(--card); border:1px solid var(--rule); border-radius:16px;
+  box-shadow:var(--shadow-sm); overflow:hidden;
 }
 .limbs li{
-  padding:22px 14px 24px; text-align:center;
-  border-inline-start:1px solid rgba(233,169,60,.22);
+  padding:20px 12px; text-align:center; border-inline-start:1px solid var(--rule);
 }
 .limbs li:first-child{border-inline-start:0}
-.limbs .n{
-  display:block; font:400 12px/1 var(--display); color:var(--gold);
-  opacity:.75; margin-bottom:10px;
+.limbs .n{font:600 12px/1 var(--display);color:var(--saffron);margin-bottom:6px;display:block}
+.limbs .nm{font:700 20px/1.2 var(--head);color:var(--brand);display:block}
+.limbs .gl{font:400 13px/1.5 var(--deva);color:var(--muted);margin-top:4px;display:block}
+
+/* ── मुख्य सुविधाहरू (Features Grid) ─────────────────── */
+.section{padding:72px 0}
+.sec-title{
+  text-align:center; max-width:680px; margin:0 auto 52px;
 }
-.limbs .nm{
-  display:block; font:400 clamp(19px,3vw,27px)/1.2 var(--display); color:#fff;
+.sec-title h2{
+  font:800 clamp(26px,4vw,36px)/1.3 var(--head); color:var(--brand); margin:0 0 12px;
 }
-.limbs .gl{
-  display:block; font:400 12.5px/1.5 var(--deva); color:#e8cfc9;
-  margin-top:7px;
+.sec-title p{font:400 17px/1.7 var(--deva);color:var(--muted);margin:0}
+
+.feat-grid{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:24px;
 }
-.limbs-note{
-  font:400 13px/1.7 var(--deva); color:#dcbdb7;
-  margin:16px 0 0; padding-bottom:64px;
+.feat-card{
+  background:var(--card); border:1px solid var(--rule); border-radius:18px;
+  padding:32px 28px; box-shadow:var(--shadow-sm); transition:all .25s ease;
+  display:flex; flex-direction:column;
+}
+.feat-card:hover{
+  transform:translateY(-4px); box-shadow:var(--shadow-md); border-color:var(--gold);
+}
+.feat-icon{
+  width:56px; height:56px; border-radius:14px; background:var(--gold-soft);
+  color:var(--brand); display:flex; align-items:center; justify-content:center;
+  font-size:26px; margin-bottom:20px; border:1px solid rgba(233,169,60,.3);
+}
+.feat-card h3{
+  font:700 20px/1.35 var(--head); margin:0 0 12px; color:var(--ink);
+}
+.feat-card p{
+  font:400 15.5px/1.7 var(--deva); color:var(--ink-2); margin:0 0 16px; flex-grow:1;
+}
+.feat-list{
+  list-style:none; margin:0; padding:14px 0 0; border-top:1px dashed var(--rule);
+}
+.feat-list li{
+  font:500 14px/1.8 var(--deva); color:var(--muted); display:flex; gap:8px;
+}
+.feat-list li::before{content:"✓";color:var(--accent-green);font-weight:bold}
+
+/* ── डाउनलोड खण्ड (Download Section) ─────────────────── */
+.download-section{
+  background:linear-gradient(180deg,#fff,var(--paper));
+  border-block:1px solid var(--rule); padding:80px 0;
+}
+.dl-box{
+  background:radial-gradient(100% 120% at 50% 0%, #ffffff 0%, #fffdfa 100%);
+  border:2px solid var(--gold); border-radius:24px;
+  padding:48px 40px; box-shadow:var(--shadow-lg); text-align:center;
+  max-width:880px; margin:0 auto;
+}
+.dl-badge{
+  display:inline-block; background:var(--green-soft); color:var(--accent-green);
+  font:700 13px/1 var(--deva); padding:6px 14px; border-radius:999px;
+  margin-bottom:16px; border:1px solid rgba(30,126,52,.2);
+}
+.dl-box h2{
+  font:900 clamp(28px,4.5vw,40px)/1.25 var(--head); color:var(--brand);
+  margin:0 0 12px;
+}
+.dl-box .dl-lead{
+  font:400 18px/1.7 var(--deva); color:var(--ink-2); max-width:60ch;
+  margin:0 auto 36px;
+}
+.dl-cards{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:24px; margin-bottom:40px; text-align:left;
+}
+.dl-platform-card{
+  background:var(--paper); border:1px solid var(--rule); border-radius:16px;
+  padding:24px; display:flex; flex-direction:column; justify-content:space-between;
+}
+.dl-platform-card.highlight{
+  border:2px solid var(--brand); background:#ffffff; box-shadow:var(--shadow-md);
+}
+.dl-platform-header{
+  display:flex; align-items:center; gap:14px; margin-bottom:14px;
+}
+.dl-p-icon{
+  width:44px; height:44px; border-radius:10px; background:var(--gold-soft);
+  display:flex; align-items:center; justify-content:center; font-size:22px;
+}
+.dl-platform-name{font:700 18px/1.2 var(--head);color:var(--ink);margin:0}
+.dl-platform-meta{font:400 13px/1.4 var(--deva);color:var(--muted);margin:2px 0 0}
+.dl-p-btn{
+  margin-top:18px; width:100%; text-align:center; padding:13px 18px;
+  border-radius:10px; font-weight:700; font-size:15.5px; display:block;
+}
+.dl-p-btn.btn-win{
+  background:linear-gradient(135deg,var(--brand-2),var(--brand)); color:#fff !important;
+  box-shadow:0 4px 14px rgba(120,11,26,.3);
+}
+.dl-p-btn.btn-win:hover{
+  background:linear-gradient(135deg,var(--brand),var(--brand-deep));
+  transform:translateY(-1px);
+}
+.dl-p-btn.btn-android{
+  background:#fff; border:1px solid var(--rule-strong); color:var(--ink) !important;
+}
+.dl-p-btn.btn-android:hover{border-color:var(--brand);background:var(--gold-soft)}
+
+/* इन्स्टलेशन गाइड */
+.install-guide{
+  margin-top:40px; text-align:left; background:var(--card);
+  border:1px solid var(--rule); border-radius:16px; padding:28px 32px;
+}
+.install-guide h3{
+  font:700 20px/1.3 var(--head); color:var(--brand); margin:0 0 18px;
+}
+.step-list{
+  list-style:none; margin:0; padding:0; display:grid; gap:16px;
+}
+.step-list li{
+  display:flex; gap:14px; font-size:15px; color:var(--ink-2);
+}
+.step-num{
+  width:28px; height:28px; border-radius:50%; background:var(--brand);
+  color:#fff; display:flex; align-items:center; justify-content:center;
+  font:700 13px/1 var(--deva); flex:none; margin-top:2px;
+}
+.install-note{
+  margin-top:18px; padding:12px 16px; background:var(--gold-soft);
+  border-left:4px solid var(--gold); border-radius:4px; font-size:14px; color:var(--ink-2);
 }
 
-/* ── सामग्री ─────────────────────────────────────────────────────────────── */
-section{padding:64px 0}
-h2{
-  font:800 clamp(22px,3.4vw,30px)/1.3 var(--head);
-  margin:0 0 8px; color:var(--brand);
+/* ── प्रणाली आवश्यकता (System Requirements Table) ────── */
+.req-table{
+  width:100%; border-collapse:collapse; margin-top:16px; font-size:14.5px;
 }
-.sub{font:400 15px/1.7 var(--deva);color:var(--muted);margin:0 0 34px;max-width:56ch}
+.req-table th, .req-table td{
+  padding:10px 14px; border:1px solid var(--rule); text-align:left;
+}
+.req-table th{background:var(--paper);font-weight:600;color:var(--brand);width:35%}
 
-.groups{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(248px,1fr))}
-.grp{
-  background:var(--card); border:1px solid var(--rule); border-radius:14px;
-  padding:24px 24px 26px;
+/* ── FAQ (प्रायः सोधिने प्रश्नहरू) ───────────────────── */
+.faq-grid{
+  display:grid; gap:14px; max-width:840px; margin:0 auto;
 }
-.grp h3{
-  font:700 17px/1.4 var(--head); margin:0 0 14px; color:var(--ink);
-  padding-bottom:12px; border-bottom:1px solid var(--rule);
+.faq-item{
+  background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:20px 24px;
 }
-.grp ul{margin:0;padding:0;list-style:none}
-.grp li{
-  font:400 15px/1.9 var(--deva); color:var(--ink-2);
-  display:flex; gap:10px;
+.faq-q{
+  font:700 17.5px/1.4 var(--head); color:var(--brand-deep); margin:0 0 8px;
 }
-.grp li::before{
-  content:"·"; color:var(--saffron); font-weight:700; flex:none;
+.faq-a{
+  font:400 15.5px/1.7 var(--deva); color:var(--ink-2); margin:0;
 }
 
-/* ── इमेलको खण्ड — समीक्षकले खोज्ने कुरा यही हो ───────────────────────────── */
-.mail{background:var(--card);border-block:1px solid var(--rule)}
-.mail dl{margin:0;display:grid;gap:0}
-.mail div{
-  display:grid; grid-template-columns:minmax(140px,220px) 1fr; gap:18px;
-  padding:18px 0; border-top:1px solid var(--rule);
+/* ── सम्पर्क खण्ड ────────────────────────────────────── */
+.contact-box{
+  background:var(--card); border:1px solid var(--rule); border-radius:20px;
+  padding:36px; box-shadow:var(--shadow-sm); display:flex; gap:36px;
+  align-items:center; flex-wrap:wrap; max-width:880px; margin:0 auto;
 }
-.mail div:first-child{border-top:0}
-.mail dt{font:600 15px/1.7 var(--deva);color:var(--brand)}
-.mail dd{margin:0;font:400 15.5px/1.75 var(--deva);color:var(--ink-2)}
-@media (max-width:620px){
-  .mail div{grid-template-columns:1fr;gap:4px}
+.contact-mug{
+  width:130px; height:130px; border-radius:50%; object-fit:cover;
+  border:4px solid var(--gold); flex:none; box-shadow:0 6px 16px rgba(0,0,0,.1);
+}
+.contact-info{flex:1 1 300px}
+.contact-name{font:800 24px/1.2 var(--head);color:var(--brand);margin:0}
+.contact-role{font:500 15px/1.6 var(--deva);color:var(--saffron);margin:2px 0 16px}
+.contact-dl{
+  margin:0; display:grid; grid-template-columns:auto 1fr; gap:6px 18px; font-size:16px;
+}
+.contact-dl dt{font-weight:600;color:var(--muted)}
+.contact-dl dd{margin:0;font-weight:500;color:var(--ink)}
+
+/* ── पुछार (Footer) ─────────────────────────────────── */
+footer{
+  background:var(--brand-deep); color:#e8cfc9; padding:48px 0 32px;
+  margin-top:60px; border-top:3px solid var(--gold);
+}
+.foot-wrap{
+  display:flex; justify-content:space-between; align-items:center;
+  flex-wrap:wrap; gap:20px; padding-bottom:28px; border-bottom:1px solid rgba(255,255,255,.12);
+}
+.foot-brand{display:flex;align-items:center;gap:14px}
+.foot-brand img{width:46px;height:auto}
+.foot-brand span{font:700 22px/1 var(--display);color:#fff}
+.foot-links{display:flex;gap:20px;list-style:none;margin:0;padding:0}
+.foot-links a{color:#f5d7cf;font-size:14.5px}
+.foot-links a:hover{color:#fff;text-decoration:underline}
+.foot-bottom{
+  padding-top:20px; text-align:center; font-size:13.5px; color:#c7aca4;
 }
 
-.stamp{
-  display:inline-block; margin-top:30px; padding:11px 18px;
-  border:1px dashed var(--rule-strong); border-radius:10px;
-  font:500 14px/1.6 var(--deva); color:var(--muted); background:var(--paper);
+/* ── रेस्पोन्सिभ ─────────────────────────────────────── */
+@media(max-width:880px){
+  .hero-grid{grid-template-columns:1fr;gap:36px}
+  .hero{padding:50px 0 60px}
+  .nav-links{display:none}
 }
-
-/* ── सम्पर्क ─────────────────────────────────────────────────────────────── */
-.card{
-  display:flex; gap:28px; align-items:center; flex-wrap:wrap;
-  background:var(--card); border:1px solid var(--rule); border-radius:16px;
-  padding:26px 30px;
-}
-.mug{
-  width:124px; height:124px; border-radius:50%; object-fit:cover; flex:none;
-  border:3px solid var(--saffron-soft,#f6d9a8);
-}
-.card-t{flex:1 1 260px;min-width:0}
-.nm{margin:0;font:800 22px/1.3 var(--head);color:var(--brand)}
-.role{margin:2px 0 16px;font:400 14px/1.6 var(--deva);color:var(--muted)}
-.reach{
-  margin:0; display:grid; gap:6px 18px;
-  grid-template-columns:auto 1fr; align-items:baseline;
-}
-.reach dt{font:600 13px/1.7 var(--deva);color:var(--muted)}
-.reach dd{margin:0;font:500 16px/1.7 var(--deva);color:var(--ink)}
-.reach a{color:var(--brand-2);text-decoration:none;border-bottom:1px solid var(--rule-strong)}
-.reach a:hover{border-bottom-color:var(--brand-2)}
-@media (max-width:480px){
-  .card{gap:20px;padding:22px}
-  .mug{width:96px;height:96px}
-}
-
-/* ── पाउ ────────────────────────────────────────────────────────────────── */
-footer{background:var(--brand-deep);color:#e8cfc9;padding:38px 0 44px}
-footer a{color:var(--gold-hi);text-decoration-thickness:1px;text-underline-offset:3px}
-.foot{display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center}
-.foot p{margin:0;font:400 14.5px/1.8 var(--deva)}
-.foot-logo{width:46px;height:auto;flex:none;opacity:.92}
-
-/* ⚠ दायरा दुवैतिर बाँधिएको छ, माथिबाट मात्र होइन. पहिले `max-width:760px`
-   मात्र थियो, र ४२० भन्दा सानोमा पनि लागू हुन्थ्यो — त्यहाँ
-   `.limbs li:nth-child(-n+2)` (०,२,१) ले तलको `.limbs li` (०,१,१) लाई
-   जित्थ्यो र «वार» माथिको धर्को हराउँथ्यो. दुई स्तम्भको नियम एक स्तम्भमा
-   पर्न दिनु हुँदैन. */
-@media (max-width:760px) and (min-width:421px){
+@media(max-width:680px){
   .limbs{grid-template-columns:repeat(2,1fr)}
-  .limbs li{border-top:1px solid rgba(233,169,60,.18)}
-  .limbs li:nth-child(-n+2){border-top:0}
-  .limbs li:nth-child(odd){border-inline-start:0}
-  .top{padding-top:52px}
-  section{padding:48px 0}
-}
-@media (max-width:420px){
-  .limbs{grid-template-columns:1fr}
-  .limbs li{border-inline-start:0;border-top:1px solid rgba(233,169,60,.18)}
-  .limbs li:first-child{border-top:0}
-}
-
-/* पाना खुल्दा एकपटक मात्र — अङ्ग एक-एक गरी उघ्रिन्छन्. */
-@media (prefers-reduced-motion:no-preference){
-  .limbs li{animation:rise .55s cubic-bezier(.2,.7,.3,1) both}
-  .limbs li:nth-child(1){animation-delay:.10s}
-  .limbs li:nth-child(2){animation-delay:.18s}
-  .limbs li:nth-child(3){animation-delay:.26s}
-  .limbs li:nth-child(4){animation-delay:.34s}
-  .limbs li:nth-child(5){animation-delay:.42s}
-  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .limbs li:last-child{grid-column:span 2;border-inline-start:0;border-top:1px solid var(--rule)}
+  .dl-box{padding:32px 20px}
+  .contact-box{padding:24px;text-align:center;justify-content:center}
+  .contact-dl{grid-template-columns:1fr;gap:4px}
 }
 </style>
 </head>
 <body>
 
-<header class="top">
-  <div class="wrap">
-    <h1 class="mark">
-      <img src="logo.png" alt="" width="420" height="372">
+<!-- शीर्ष नेभिगेसन -->
+<header class="nav-bar">
+  <div class="wrap nav-inner">
+    <a href="#" class="brand-link">
+      <img src="logo.png" alt="कर्मसाक्षी लोगो">
       <span>कर्मसाक्षी</span>
-    </h1>
-    <p class="tagline">पण्डितको दैनिक साथी</p>
-    <p class="lede">
-      पञ्चाङ्ग हेर्न एउटा किताब, मुहूर्त जोड्न अर्को, कुण्डली बनाउन तेस्रो —
-      कर्मसाक्षीले ती सबै एउटै ठाउँमा ल्याउँछ।
-    </p>
-
-    <ol class="limbs">
-      <li><span class="n">१</span><span class="nm">तिथि</span><span class="gl">चन्द्रमाको कला</span></li>
-      <li><span class="n">२</span><span class="nm">वार</span><span class="gl">हप्ताको दिन</span></li>
-      <li><span class="n">३</span><span class="nm">नक्षत्र</span><span class="gl">चन्द्रमाको ठाउँ</span></li>
-      <li><span class="n">४</span><span class="nm">योग</span><span class="gl">सूर्य–चन्द्रको जोड</span></li>
-      <li><span class="n">५</span><span class="nm">करण</span><span class="gl">तिथिको आधा</span></li>
-    </ol>
-    <p class="limbs-note">
-      पञ्चाङ्ग भनेकै यी पाँच अङ्ग हुन्। कर्मसाक्षीले हरेक दिनको यी पाँचै,
-      ठाउँअनुसारको सूर्योदय हेरेर गणना गर्छ।
-    </p>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#features">सुविधाहरू</a></li>
+      <li><a href="#download">डाउनलोड</a></li>
+      <li><a href="#install">कम्प्युटरमा इन्स्टल</a></li>
+      <li><a href="#faq">प्रायः सोधिने प्रश्न</a></li>
+      <li><a href="#contact">सम्पर्क</a></li>
+    </ul>
+    <a href="#download" class="nav-cta">कम्प्युटरमा डाउनलोड ⇩</a>
   </div>
 </header>
 
-<section>
-  <div class="wrap">
-    <h2>एपभित्र के-के छ</h2>
-    <p class="sub">
-      कर्मकाण्डका विधि, ज्योतिषका गणना र ग्रन्थ — पुरोहितलाई दिनभरि चाहिने कुरा।
-    </p>
+<!-- हिरो सेक्सन -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="pill-badge">
+        <span>ॐ</span> शास्त्रीय एवं डिजिटल पञ्चाङ्ग प्रणाली
+      </div>
+      <h1>पण्डित, पुरोहित र ज्योतिषीका लागि सम्पूर्ण डिजिटल साथी</h1>
+      <p class="hero-sub">
+        पञ्चाङ्ग, नेपाली पात्रो, कुण्डली, फलादेश, कर्मकाण्ड विधि, यजमान व्यवस्थापन र बृहत् पुस्तकालय — अब हजुरको कम्प्युटर (Windows PC) मा १००% शुद्ध, प्रामाणिक र अफलाइन।
+      </p>
 
-    <div class="groups">
-      <div class="grp">
-        <h3>दिन र समय</h3>
-        <ul>
-          <li>दैनिक पञ्चाङ्ग</li>
-          <li>पात्रो र क्यालेन्डर</li>
-          <li>मुहूर्त — चौघडिया, होरा, राहुकाल, साइत</li>
-          <li>ग्रह गोचर</li>
-        </ul>
+      <div class="hero-btns">
+        <a href="https://github.com/sb981592-oss/karmasaakshi-site/releases/latest/download/Karmasaakshi_setup.exe" download="Karmasaakshi_setup.exe" class="btn-primary">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.802"/></svg>
+          Windows का लागि डाउनलोड (.exe - ६४-बिट)
+        </a>
+        <a href="#download" class="btn-secondary">
+          अन्य संस्करण (Android / MSI) ↓
+        </a>
       </div>
 
-      <div class="grp">
-        <h3>कुण्डली</h3>
-        <ul>
-          <li>जन्म विवरणबाट सविस्तार कुण्डली</li>
-          <li>कुण्डली मिलान — अष्टकूट, ३६ गुण</li>
-          <li>दशा, योग र षड्बल</li>
-          <li>लग्नपत्रिका</li>
-        </ul>
-      </div>
-
-      <div class="grp">
-        <h3>सन्दर्भ</h3>
-        <ul>
-          <li>गोत्र र प्रवर — थरअनुसार</li>
-          <li>२७ नक्षत्रको पूरा विवरण</li>
-          <li>सङ्कल्प — छोटो, मध्यम, लामो</li>
-          <li>नामकरण र अवकहडा</li>
-        </ul>
-      </div>
-
-      <div class="grp">
-        <h3>पुस्तकालय</h3>
-        <ul>
-          <li>श्रीमद्भागवत महापुराण</li>
-          <li>दुर्गा सप्तशती</li>
-          <li>पाराशर होरा शास्त्र</li>
-          <li>मूल, छन्द र नेपाली अर्थसहित</li>
-        </ul>
+      <div class="hero-specs">
+        <span>✓ १००% अफलाइन चल्ने</span>
+        <span>✓ कम्प्युटर एवं ल्यापटपमै सुरक्षित</span>
+        <span>✓ संस्करण १.०.१७</span>
       </div>
     </div>
 
-    <p class="stamp">अहिले निर्माणाधीन — छिट्टै सार्वजनिक हुँदैछ।</p>
+    <!-- हिरो दायाँ कार्ड -->
+    <div class="hero-card">
+      <div class="hero-card-header">
+        <img src="logo.png" alt="कर्मसाक्षी">
+        <div>
+          <p class="hero-card-title">कर्मसाक्षी डेस्कटप</p>
+          <p class="hero-card-sub">विन्डोज पीसी संस्करण (Windows 10/11)</p>
+        </div>
+      </div>
+      <ul class="card-mini-features">
+        <li><span class="check-icon">✓</span> <span><strong>प्रत्यक्ष पञ्चाङ्ग:</strong> सूर्यसिद्धान्त र समिति विधि अनुसारको शुद्ध ५ अङ्ग।</span></li>
+        <li><span class="check-icon">✓</span> <span><strong>सविस्तार कुण्डली:</strong> विंशोत्तरी, योगिनी, षड्बल, अष्टकवर्ग, मेलापक ३६ गुण।</span></li>
+        <li><span class="check-icon">✓</span> <span><strong>कर्मकाण्ड सङ्कल्प:</strong> यजमानको नाम-गोत्र राख्ने बित्तिकै तयार हुने स्वचालित सङ्कल्प।</span></li>
+        <li><span class="check-icon">✓</span> <span><strong>यजमान डायरी:</strong> आफ्ना सम्पूर्ण जजमानको बहीखाता र विवरण कम्प्युटरमै।</span></li>
+        <li><span class="check-icon">✓</span> <span><strong>बृहत् पुस्तकालय:</strong> भागवत, चण्डी, शुक्ल यजुर्वेद संहिता स्वरसहित।</span></li>
+      </ul>
+    </div>
   </div>
 </section>
 
-<section class="mail">
-  <div class="wrap">
-    <h2>हामी कस्तो इमेल पठाउँछौँ</h2>
-    <p class="sub">
-      कर्मसाक्षीले प्रयोगकर्तालाई काम परेको बेला मात्र इमेल पठाउँछ।
-      प्रचारका इमेल पठाउँदैन।
-    </p>
+<!-- पञ्चाङ्ग पट्टी -->
+<div class="wrap">
+  <ol class="limbs">
+    <li><span class="n">१</span><span class="nm">तिथि</span><span class="gl">चन्द्रमाको कला एवं समाप्ति समय</span></li>
+    <li><span class="n">२</span><span class="nm">वार</span><span class="gl">सूर्य सिद्धान्तको वारमान</span></li>
+    <li><span class="n">३</span><span class="nm">नक्षत्र</span><span class="gl">चन्द्रमाको भोग एवं चरण</span></li>
+    <li><span class="n">४</span><span class="nm">योग</span><span class="gl">सूर्य र चन्द्रको शुद्ध संयोग</span></li>
+    <li><span class="n">५</span><span class="nm">करण</span><span class="gl">तिथिको आधा भाग एवं भद्रा विचार</span></li>
+  </ol>
+</div>
 
-    <dl>
-      <div>
-        <dt>खाता खोल्दा</dt>
-        <dd>दर्ता पूरा गर्न एउटा एकपटके कोड (OTP)।</dd>
+<!-- मुख्य सुविधाहरू (Features) -->
+<section id="features" class="section">
+  <div class="wrap">
+    <div class="sec-title">
+      <h2>कर्मसाक्षीमा के-के छ?</h2>
+      <p>कर्मकाण्डका विधि, ज्योतिषका सूक्ष्म गणित, यजमान व्यवस्थापन र ग्रन्थ — पुरोहितलाई दिनभरि चाहिने सबै साधन एउटै सफ्टवेयरमा।</p>
+    </div>
+
+    <div class="feat-grid">
+      <!-- कार्ड १ -->
+      <div class="feat-card">
+        <div class="feat-icon">📅</div>
+        <h3>दैनिक पञ्चाङ्ग र नेपाली पात्रो</h3>
+        <p>नेपाल तथा विश्वभरिका शहरहरूका लागि ठाउँ अनुसारको सूर्योदय-सूर्यास्तमा आधारित प्रत्यक्ष पञ्चाङ्ग। चाडपर्व, तिथि, मुहूर्त र शुभ साइतहरू।</p>
+        <ul class="feat-list">
+          <li>दिनको दुवै करण एवं भद्रा विचार</li>
+          <li>चौघडिया, होरा, राहुकाल एवं अभिजित् मुहूर्त</li>
+          <li>सौर्य मास, चान्द्र मास एवं अधिकमास (मलमास) गणना</li>
+        </ul>
       </div>
-      <div>
-        <dt>पासवर्ड बिर्सँदा</dt>
-        <dd>पासवर्ड फेर्न एउटा एकपटके कोड। प्रयोगकर्ता आफैँले मागेपछि मात्र।</dd>
+
+      <!-- कार्ड २ -->
+      <div class="feat-card">
+        <div class="feat-icon">🪐</div>
+        <h3>सविस्तार कुण्डली र फलादेश</h3>
+        <p>जन्म विवरण राख्नासाथ लग्न, नवांश, चन्द्र कुण्डली, भाव चलित, ग्रह स्पष्ट, षड्बल र विंशोत्तरी तथा योगिनी दशाको विस्तृत चक्र प्राप्त गर्नुहोस्।</p>
+        <ul class="feat-list">
+          <li>विवाह मिलान — अष्टकूट ३६ गुण एवं मङ्गल दोष</li>
+          <li>अष्टकवर्ग, दृष्टिफल एवं वर्षफल (ताजिक)</li>
+          <li>लग्नपत्रिका र परम्परागत नेपाली चिना प्रिन्ट ढाँचा</li>
+        </ul>
       </div>
-      <div>
-        <dt>सदस्यता</dt>
-        <dd>सदस्यता सुरु भएको वा सकिन लागेको जानकारी।</dd>
+
+      <!-- कार्ड ३ -->
+      <div class="feat-card">
+        <div class="feat-icon">🪔</div>
+        <h3>कर्मकाण्ड एवं पूजा विधि</h3>
+        <p>षोडश संस्कार, नित्यकर्म, श्राद्ध, रुद्री, दुर्गा सप्तशती (चण्डी), विवाह, व्रत र हवनका प्रामाणिक मन्त्र तथा नेपाली भाषार्थसहितको चरणबद्ध विधि।</p>
+        <ul class="feat-list">
+          <li>स्वचालित सङ्कल्प जनरेटर — नाम, गोत्र र मिति अनुसार</li>
+          <li>वैदिक मन्त्रहरूमा शुद्ध उदात्त, अनुदात्त र स्वरित चिह्न</li>
+          <li>पूजा सामग्री सूची र मण्डप निर्माण विधि</li>
+        </ul>
       </div>
-      <div>
-        <dt>ठेगाना कहाँबाट</dt>
-        <dd>प्रयोगकर्ता आफैँले एपमा खाता खोल्दा दिएको ठेगाना। कतैबाट किनिएको वा जम्मा गरिएको सूची छैन।</dd>
+
+      <!-- कार्ड ४ -->
+      <div class="feat-card">
+        <div class="feat-icon">👥</div>
+        <h3>यजमान म्यानेजमेन्ट (डिजिटल डायरी)</h3>
+        <p>आफ्ना सम्पूर्ण यजमानहरूको नाम, थर, गोत्र, ठेगाना, परिवारका सदस्यहरूको विवरण र वार्षिक पूजा-अनुष्ठानको बहीखाता आफ्नै कम्प्युटरमा सुरक्षित राख्नुहोस्।</p>
+        <ul class="feat-list">
+          <li>सङ्कल्प तथा तर्पणमा एक क्लिकमै यजमानको नाम-गोत्र भरिने</li>
+          <li>तिथिमिति र वार्षिक श्राद्ध सम्झौना</li>
+          <li>सम्पूर्ण डाटा आफ्नै यन्त्रमा पूर्ण गोप्य रहने</li>
+        </ul>
       </div>
-      <div>
-        <dt>पठाउने ठेगाना</dt>
-        <dd>noreply@karmasaakshi.com</dd>
+
+      <!-- कार्ड ५ -->
+      <div class="feat-card">
+        <div class="feat-icon">📖</div>
+        <h3>बृहत् पुस्तकालय (धार्मिक ग्रन्थ)</h3>
+        <p>हजारौं पृष्ठका धार्मिक ग्रन्थहरू अब एउटै सफ्टवेयरमा। मूल श्लोक, छन्द र स्पष्ट नेपाली अर्थसहित अध्ययन एवं पाठ गर्न सकिने।</p>
+        <ul class="feat-list">
+          <li>श्रीमद्भागवत महापुराण (बाह्रै स्कन्ध माहात्म्यसहित)</li>
+          <li>दुर्गा सप्तशती (कवच, अर्गला, कीलक एवं तेह्रै अध्याय)</li>
+          <li>शुक्ल यजुर्वेद वाजसनेयि माध्यन्दिन संहिता (स्वरचिह्न सहित)</li>
+        </ul>
       </div>
-    </dl>
+
+      <!-- कार्ड ६ -->
+      <div class="feat-card">
+        <div class="feat-icon">⚡</div>
+        <h3>१००% अफलाइन र गोपनीयता</h3>
+        <p>कर्मसाक्षी चलाउन इन्टरनेटको कुनै भर पर्नु पर्दैन। पञ्चाङ्ग, कुण्डली र पुस्तकहरू सबै इन्टरनेट बिना नै अति द्रुत गतिमा खुल्छन्।</p>
+        <ul class="feat-list">
+          <li>इन्टरनेट बिना नै अफलाइन सधैं चल्ने</li>
+          <li>तपाईंको वा जजमानको कुनै डाटा तेस्रो पक्षमा नजाने</li>
+          <li>विन्डोज डेस्कटप र ल्यापटपमा सहज प्रिन्टिङ</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
-<section id="sampark">
+<!-- डाउनलोड खण्ड (Download Section) -->
+<section id="download" class="download-section">
   <div class="wrap">
-    <h2>सम्पर्क</h2>
-    <p class="sub">कर्मसाक्षीबारे केही सोध्नु छ भने सिधै भन्नुहोस्।</p>
+    <div class="dl-box">
+      <span class="dl-badge">आधिकारिक डेस्कटप डाउनलोड</span>
+      <h2>कर्मसाक्षी एप्लिकेसन डाउनलोड गर्नुहोस्</h2>
+      <p class="dl-lead">
+        कर्मसाक्षीको आधिकारिक विन्डोज डेस्कटप संस्करण सिधै यहाँबाट डाउनलोड गर्नुहोस्। सुरक्षित, छिटो र कम्प्युटरमा सजिलै इन्स्टल गर्न सकिने।
+      </p>
 
-    <div class="card">
-      <img class="mug" src="mohan.jpg" alt="मोहन पोखरेल" width="640" height="640" loading="lazy">
-      <div class="card-t">
-        <p class="nm">मोहन पोखरेल</p>
-        <p class="role">कर्मसाक्षीका निर्माता</p>
-        <dl class="reach">
-          <dt>फोन</dt>
-          <dd><a href="tel:+9779815067270">९८१५०६७२७०</a></dd>
-          <dt>इमेल</dt>
+      <div class="dl-cards">
+        <!-- विन्डोज कार्ड -->
+        <div class="dl-platform-card highlight">
+          <div>
+            <div class="dl-platform-header">
+              <div class="dl-p-icon">💻</div>
+              <div>
+                <p class="dl-platform-name">Windows PC (डेस्कटप/ल्यापटप)</p>
+                <p class="dl-platform-meta">Windows 10 / 11 (64-bit) · v1.0.17</p>
+              </div>
+            </div>
+            <p style="font-size:14.5px;color:var(--ink-2);margin:10px 0;">
+              कम्प्युटरमा कर्मसाक्षी चलाउन आधिकारिक इन्स्टलर डाउनलोड गर्नुहोस्। पूर्ण अफलाइन, छिटो र प्रिन्टरसँग सिधा जोडिने।
+            </p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <a href="https://github.com/sb981592-oss/karmasaakshi-site/releases/latest/download/Karmasaakshi_setup.exe" download="Karmasaakshi_setup.exe" class="dl-p-btn btn-win">
+              ⇩ Windows Setup (.exe) सिधै डाउनलोड (~६० MB)
+            </a>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <a href="https://github.com/sb981592-oss/karmasaakshi-site/releases/latest/download/Karmasaakshi_setup.msi" download="Karmasaakshi_setup.msi" class="dl-p-btn" style="flex:1;min-width:140px;background:#fff;border:1.5px solid var(--rule-strong);color:var(--ink);box-shadow:none;font-size:13.5px;padding:9px 12px;text-align:center;">
+                वैकल्पिक .msi प्याकेज
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- एन्ड्रोइड कार्ड -->
+        <div class="dl-platform-card">
+          <div>
+            <div class="dl-platform-header">
+              <div class="dl-p-icon">📱</div>
+              <div>
+                <p class="dl-platform-name">Android मोबाइल (फोन/ट्याब्लेट)</p>
+                <p class="dl-platform-meta">Android 7.0+ · Google Play & Direct APK</p>
+              </div>
+            </div>
+            <p style="font-size:14.5px;color:var(--ink-2);margin:10px 0;">
+              गोजीमै पञ्चाङ्ग र कुण्डली बोक्न एन्ड्रोइड फोनको लागि मोबाइल एप डाउनलोड गर्नुहोस्।
+            </p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <a href="https://play.google.com/store/apps/details?id=com.poojaaaja.karmasakshi" target="_blank" class="dl-p-btn btn-android">
+              Google Play मा हेर्नुहोस्
+            </a>
+            <a href="https://github.com/sb981592-oss/karmasaakshi-site/releases/latest/download/Karmasaakshi.apk" download="Karmasaakshi.apk" class="dl-p-btn" style="background:#fff;border:1.5px solid var(--rule-strong);color:var(--ink);box-shadow:none;">
+              ⇩ Direct APK डाउनलोड (~१८७ MB)
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- इन्स्टलेशन गाइड -->
+      <div id="install" class="install-guide">
+        <h3>विन्डोज कम्प्युटरमा कसरी इन्स्टल गर्ने? (सजिलो ३ चरण)</h3>
+        <ol class="step-list">
+          <li>
+            <div class="step-num">१</div>
+            <div>
+              <strong>इन्स्टलर डाउनलोड गर्नुहोस्:</strong> माथिको <em>"Windows Setup (.exe) सिधै डाउनलोड"</em> बटनमा थिच्नुहोस्। <code>Karmasaakshi_setup.exe</code> फाइल तपाईंको कम्प्युटरमा तुरुन्त डाउनलोड हुनेछ।
+            </div>
+          </li>
+          <li>
+            <div class="step-num">२</div>
+            <div>
+              <strong>फाइल खोलेर इन्स्टल गर्नुहोस्:</strong> डाउनलोड भएको <code>Karmasaakshi_setup.exe</code> फाइलमा डबल-क्लिक गर्नुहोस्। 
+            </div>
+          </li>
+          <li>
+            <div class="step-num">३</div>
+            <div>
+              <strong>प्रयोग सुरु गर्नुहोस्:</strong> इन्स्टलेसन सकिनासाथ हजुरको डेस्कटपमा 'कर्मसाक्षी' को आइकन देखा पर्नेछ। त्यसलाई खोलेर आफ्नै मोबाइल नम्बरबाट लगइन गरी तुरुन्तै प्रयोग गर्नुहोस्।
+            </div>
+          </li>
+        </ol>
+
+        <div class="install-note">
+          <strong>💡 पहिलो पटक इन्स्टल गर्दा जान्नुपर्ने सामान्य विन्डोज सुरक्षा सूचना:</strong><br>
+          • <strong>डाउनलोड गर्दा:</strong> यदि ब्राउजरले <em>"isn't commonly downloaded"</em> जस्तो सूचना देखाएमा दायाँपट्टिको तीनवटा थोप्लो <strong>(...)</strong> मा क्लिक गरी <strong>"Keep"</strong> (राख्नुहोस्) रोज्नुहोस्।<br>
+          • <strong>इन्स्टल गर्दा:</strong> यदि विन्डोजले <em>"Windows protected your PC"</em> देखाएमा <strong>"More info"</strong> मा थिचेर <strong>"Run anyway"</strong> रोज्नुहोस्। यो सफ्टवेयर १००% आधिकारिक, सुरक्षित र भाइरसमुक्त छ।
+        </div>
+
+        <h4 style="margin:24px 0 8px;font-family:var(--head);color:var(--brand);">कम्प्युटरको न्यूनतम आवश्यकता (System Requirements):</h4>
+        <table class="req-table">
+          <tr><th>अपरेटिङ सिस्टम</th><td>Windows 10 वा Windows 11 (64-bit)</td></tr>
+          <tr><th>र्याम (RAM)</th><td>न्यूनतम 2 GB (4 GB भए अझ राम्रो)</td></tr>
+          <tr><th>हार्डडिस्क स्पेस</th><td>न्यूनतम 300 MB खाली ठाउँ</td></tr>
+          <tr><th>इन्टरनेट</th><td>पहिलो पटक लगइन गर्न मात्र (त्यसपछि सबै कुरा १००% अफलाइन चल्छ)</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- प्रायः सोधिने प्रश्नहरू (FAQ) -->
+<section id="faq" class="section">
+  <div class="wrap">
+    <div class="sec-title">
+      <h2>प्रायः सोधिने प्रश्नहरू</h2>
+      <p>कर्मसाक्षी सफ्टवेयरबारे जान्नुपर्ने केही मुख्य कुराहरू</p>
+    </div>
+
+    <div class="faq-grid">
+      <div class="faq-item">
+        <p class="faq-q">के यो कम्प्युटरमा इन्टरनेट बिना नै चल्छ?</p>
+        <p class="faq-a">हो, कर्मसाक्षी शतप्रतिशत अफलाइन चल्ने गरी बनाइएको छ। पञ्चाङ्ग, कुण्डली गणना, कर्मकाण्ड विधि र सम्पूर्ण पुस्तकहरू हेर्न इन्टरनेट चाहिन्न। केवल पहिलो पटक दर्ता र सदस्यता नवीकरण गर्दा मात्र इन्टरनेट चाहिन्छ।</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">सफ्टवेयरको नयाँ संस्करण र अपडेट कसरी पाइन्छ?</p>
+        <p class="faq-a">कर्मसाक्षी डेस्कटपभित्रै स्वचालित अपडेट (Auto-update) को इन्जिन जडान गरिएको छ। नयाँ सुविधा वा सुधार आउनासाथ एपले नै सूचित गर्छ वा यही आधिकारिक वेबसाइटबाट सिधै नयाँ संस्करण डाउनलोड गर्न सकिन्छ।</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">के कुण्डली, चिना र पत्रिका प्रिन्ट गर्न मिल्छ?</p>
+        <p class="faq-a">अवश्य मिल्छ! कर्मसाक्षीमा नेपाली परम्परागत चिना (रातो-कालो शास्त्रीय ढाँचा), लग्नपत्रिका र जन्मकुण्डलीलाई उच्च गुणस्तरको PDF मा सेभ गर्न वा सिधै प्रिन्टरबाट प्रिन्ट गर्न सकिन्छ।</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">एउटै खाताबाट कम्प्युटर र मोबाइल दुवैमा चल्छ?</p>
+        <p class="faq-a">हो, तपाईंले आफ्नो दर्ता गरिएको मोबाइल नम्बरबाट कम्प्युटर (Windows) र मोबाइल (Android) दुवैमा एउटै सदस्यतामा सहजै चलाउन सक्नुहुन्छ।</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- सम्पर्क खण्ड (Contact) -->
+<section id="contact" class="section" style="background:var(--paper-2);border-top:1px solid var(--rule);">
+  <div class="wrap">
+    <div class="sec-title">
+      <h2>सम्पर्क एवं सहयोग</h2>
+      <p>कर्मसाक्षी सफ्टवेयरबारे कुनै जिज्ञासा, सुझाव वा सहायता चाहिएमा सिधै सम्पर्क गर्नुहोस्।</p>
+    </div>
+
+    <div class="contact-box">
+      <img class="contact-mug" src="mohan.jpg" alt="मोहन पोखरेल">
+      <div class="contact-info">
+        <p class="contact-name">मोहन पोखरेल</p>
+        <p class="contact-role">कर्मसाक्षीका परिकल्पनाकार एवं निर्माता</p>
+        <dl class="contact-dl">
+          <dt>फोन / ह्वाट्सएप:</dt>
+          <dd><a href="tel:+9779815067270">+९७७ ९८१५०६७२७०</a></dd>
+          <dt>इमेल:</dt>
           <dd><a href="mailto:help.karmasaakshi@gmail.com">help.karmasaakshi@gmail.com</a></dd>
-          <dt>ठाउँ</dt>
+          <dt>स्थान:</dt>
           <dd>नेपाल</dd>
         </dl>
       </div>
@@ -349,10 +685,26 @@ footer a{color:var(--gold-hi);text-decoration-thickness:1px;text-underline-offse
   </div>
 </section>
 
+<!-- पुछार (Footer) -->
 <footer>
-  <div class="wrap foot">
-    <img class="foot-logo" src="logo.png" alt="" width="420" height="372">
-    <p>© २०२६ कर्मसाक्षी · <a href="https://karmasaakshi.com">karmasaakshi.com</a></p>
+  <div class="wrap">
+    <div class="foot-wrap">
+      <div class="foot-brand">
+        <img src="logo.png" alt="कर्मसाक्षी">
+        <span>कर्मसाक्षी</span>
+      </div>
+      <ul class="foot-links">
+        <li><a href="#features">सुविधाहरू</a></li>
+        <li><a href="#download">डाउनलोड</a></li>
+        <li><a href="./privacy.html">गोपनीयता नीति</a></li>
+        <li><a href="./account-deletion.html">खाता मेट्ने</a></li>
+        <li><a href="#contact">सम्पर्क</a></li>
+      </ul>
+    </div>
+    <div class="foot-bottom">
+      <p>© २०२६ कर्मसाक्षी · सर्वाधिकार सुरक्षित · karmasaakshi.com</p>
+      <p style="margin-top:6px;opacity:.75;">पण्डित, पुरोहित र ज्योतिषीका लागि पूर्ण समर्पित प्रामाणिक नेपाली सफ्टवेयर</p>
+    </div>
   </div>
 </footer>
 
