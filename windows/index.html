@@ -196,14 +196,22 @@ body{
   </div>
 
   <p style="color:var(--ink-2);font-size:15px;margin-bottom:6px;">
-    कम्प्युटरमा ज्योतिष, पञ्चाङ्ग, कुण्डली, वास्तु र कर्मकाण्ड सञ्चालन गर्न तलको बटन थिच्नुहोस्:
+    कम्प्युटरमा कर्मसाक्षी चलाउन तलको विकल्प छान्नुहोस्:
   </p>
 
   <div class="dl-actions">
-    <a id="exe-link" href="https://github.com/sb981592-oss/karmasaakshi-site/releases/latest/download/Karmasaakshi_setup.exe" class="btn-main">
+    <!-- सिफारिस गरिएको विकल्प: ZIP (कुनै पनि ब्राउजरले नरोक्ने) -->
+    <a href="https://github.com/sb981592-oss/karmasaakshi-site/releases/latest/download/Karmasaakshi-Windows-Setup-v1.0.20.zip" class="btn-main">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.802"/></svg>
-      Windows Setup (.exe) डाउनलोड गर्नुहोस् (~६० MB)
+      ⚡ झन्झटमुक्त Windows (.zip) डाउनलोड (~६० MB)
     </a>
+
+    <!-- प्रत्यक्ष .exe इन्स्टलर -->
+    <a href="https://github.com/sb981592-oss/karmasaakshi-site/releases/latest/download/Karmasaakshi_setup.exe" class="btn-sub">
+      वा Windows Setup (.exe) सिधै डाउनलोड गर्नुहोस्
+    </a>
+
+    <!-- वैकल्पिक .msi -->
     <a href="https://github.com/sb981592-oss/karmasaakshi-site/releases/latest/download/Karmasaakshi_setup.msi" class="btn-sub">
       वैकल्पिक Windows Installer (.msi) डाउनलोड गर्नुहोस्
     </a>
@@ -213,16 +221,16 @@ body{
   <div class="notice-box">
     <div class="notice-title">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      डाउनलोड वा इन्स्टल गर्दा चेतावनी आएमा के गर्ने?
+      .exe डाउनलोड गर्दा चेतावनी आएमा १ सेकेन्डमा हटाउने तरिका:
     </div>
     <div class="step-item">
-      <strong>१. ब्राउजरले रोकेमा (Chrome / Edge):</strong> डाउनलोड लिस्टमा देखिएको तीनवटा थोप्ला <code>...</code> मा क्लिक गरी <strong>Keep</strong> रोज्नुहोस् र <strong>Show more</strong> थिचेर <strong>"Keep anyway" (जे भए पनि राख्नुहोस्)</strong> छान्नुहोस्।
+      <strong>१. ब्राउजरमा (Edge / Chrome):</strong> यदि <em>"isn't commonly downloaded"</em> देखिएमा छेउको <code>...</code> (तीन थोप्लो) मा क्लिक गर्नुहोस् ➜ <strong>Keep</strong> रोज्नुहोस् ➜ <strong>Show more</strong> थिचेर <strong>"Keep anyway" (जे भए पनि राख्नुहोस्)</strong> छान्नुहोस्।
     </div>
     <div class="step-item">
-      <strong>२. विन्डोजले नीलो स्क्रिन (SmartScreen) देखाएमा:</strong> <em>"Windows protected your PC"</em> विन्डोमा सानो अक्षरमा लेखिएको <strong>"More info" (थप जानकारी)</strong> मा क्लिक गर्नुहोस् र त्यसपछि देखिने <strong>"Run anyway" (जे भए पनि चलाउनुहोस्)</strong> बटन थिच्नुहोस्।
+      <strong>२. विन्डोजमा (नीलो स्क्रिन आएमा):</strong> <em>"Windows protected your PC"</em> विन्डोमा सानो अक्षरमा लेखिएको <strong>"More info" (थप जानकारी)</strong> मा थिच्नुहोस् र त्यसपछि तल देखिने <strong>"Run anyway" (जे भए पनि चलाउनुहोस्)</strong> बटन थिच्नुहोस्।
     </div>
     <div class="step-item" style="margin-bottom:0;color:var(--muted);font-size:13px;">
-      <em>* यो नयाँ संस्करणको आधिकारिक सफ्टवेयर भएकोले विन्डोजले पहिलो पटक सुरक्षा सतर्कता देखाएको हो। सफ्टवेयर पूर्ण रूपमा भाइरसमुक्त छ।</em>
+      <em>* सुझाव: माथिको <strong>"झन्झटमुक्त Windows (.zip)"</strong> बटन थिचेर डाउनलोड गर्दा कुनै पनि चेतावनी बिना तुरन्तै डाउनलोड हुन्छ!</em>
     </div>
   </div>
 
@@ -231,23 +239,6 @@ body{
     <a href="https://play.google.com/store/apps/details?id=com.poojaaaja.karmasakshi" target="_blank" rel="noopener">Android मोबाइल एप ↗</a>
   </div>
 </div>
-
-<script>
-// Auto trigger download after 1 second if not already triggered
-window.addEventListener('load', function() {
-  setTimeout(function() {
-    var link = document.getElementById('exe-link');
-    if (link) {
-      var a = document.createElement('a');
-      a.href = link.href;
-      a.setAttribute('download', 'Karmasaakshi_setup.exe');
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    }
-  }, 1200);
-});
-</script>
 
 </body>
 </html>
