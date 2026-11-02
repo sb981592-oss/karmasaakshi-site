@@ -97,6 +97,26 @@ body{
   gap:12px;
   margin:24px 0;
 }
+.btn-ms{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  background:linear-gradient(135deg,#0078d4,#005a9e);
+  color:#fff;
+  text-decoration:none;
+  padding:16px 24px;
+  border-radius:14px;
+  font-size:17px;
+  font-weight:700;
+  box-shadow:0 6px 20px rgba(0,120,212,.3);
+  transition:all .2s ease;
+}
+.btn-ms:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(0,120,212,.4);
+  background:linear-gradient(135deg,#005a9e,#004578);
+}
 .btn-main{
   display:flex;
   align-items:center;
@@ -205,6 +225,17 @@ body{
   </p>
 
   <div class="dl-actions">
+    <!-- सिफारिस गरिएको आधिकारिक विकल्प: Microsoft Store -->
+    <a href="https://apps.microsoft.com/detail/9NVXP75S3HCJ" target="_blank" rel="noopener" class="btn-ms">
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="1" y="1" width="10" height="10" fill="#f25022"/>
+        <rect x="13" y="1" width="10" height="10" fill="#7fba00"/>
+        <rect x="1" y="13" width="10" height="10" fill="#00a4ef"/>
+        <rect x="13" y="13" width="10" height="10" fill="#ffb900"/>
+      </svg>
+      ⊞ Microsoft Store बाट लिनुहोस् (सिफारिस गरिएको)
+    </a>
+
     <!-- सिफारिस गरिएको विकल्प: ZIP (कुनै पनि ब्राउजरले नरोक्ने) -->
     <a href="https://github.com/sb981592-oss/karmasaakshi-site/releases/latest/download/Karmasaakshi_setup.zip" class="btn-main">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.802"/></svg>
@@ -235,12 +266,13 @@ body{
       <strong>२. विन्डोजमा (नीलो स्क्रिन आएमा):</strong> <em>"Windows protected your PC"</em> विन्डोमा सानो अक्षरमा लेखिएको <strong>"More info" (थप जानकारी)</strong> मा थिच्नुहोस् र त्यसपछि तल देखिने <strong>"Run anyway" (जे भए पनि चलाउनुहोस्)</strong> बटन थिच्नुहोस्।
     </div>
     <div class="step-item" style="margin-bottom:0;color:var(--muted);font-size:13px;">
-      <em>* सुझाव: माथिको <strong>"झन्झटमुक्त Windows (.zip)"</strong> बटन थिचेर डाउनलोड गर्दा कुनै पनि चेतावनी बिना तुरन्तै डाउनलोड हुन्छ!</em>
+      <em>* सुझाव: माथिको <strong>"Microsoft Store बाट लिनुहोस्"</strong> वा <strong>"झन्झटमुक्त Windows (.zip)"</strong> बटन प्रयोग गर्दा कुनै पनि चेतावनी बिना सजिलै इन्स्टल हुन्छ!</em>
     </div>
   </div>
 
   <div class="foot-links">
     <a href="https://www.karmasaakshi.com/">← गृहपृष्ठमा फर्कनुहोस्</a>
+    <a href="https://apps.microsoft.com/detail/9NVXP75S3HCJ" target="_blank" rel="noopener">Microsoft Store ↗</a>
     <a href="https://play.google.com/store/apps/details?id=com.poojaaaja.karmasakshi" target="_blank" rel="noopener">Android मोबाइल एप ↗</a>
   </div>
 </div>
