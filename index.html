@@ -1048,18 +1048,43 @@ footer{
 </footer>
 
 <script>
-function launchPlayStore(event) {
-  var isAndroid = /Android/i.test(navigator.userAgent);
-  if (isAndroid) {
-    if (event && event.preventDefault) event.preventDefault();
-    window.location.href = "market://details?id=com.poojaaaja.karmasakshi";
-    setTimeout(function() {
-      window.location.href = "https://play.google.com/store/apps/details?id=com.poojaaaja.karmasakshi";
-    }, 1200);
-    return false;
+(function() {
+  var pkg = "com.poojaaaja.karmasakshi";
+  var fallbackUrl = "https://play.google.com/store/apps/details?id=" + pkg;
+  // Official Android Intent URI with embedded browser fallback:
+  // Forces Facebook/Instagram In-App Browser (WebView) to escape to the native Google Play Store app
+  var intentUrl = "intent://details?id=" + pkg + "#Intent;scheme=market;package=com.android.vending;S.browser_fallback_url=" + encodeURIComponent(fallbackUrl) + ";end;";
+
+  function isAndroid() {
+    return /Android/i.test(navigator.userAgent || "");
   }
-  return true;
-}
+
+  // Pre-configure all Play Store links on Android so native touch/click works even without JS handlers
+  function setupPlayLinks() {
+    if (!isAndroid()) return;
+    var links = document.querySelectorAll('a[href*="play.google.com/store/apps/details?id=' + pkg + '"]');
+    links.forEach(function(link) {
+      link.setAttribute("href", intentUrl);
+      link.removeAttribute("target"); // In-app WebViews drop/block target="_blank" navigations
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setupPlayLinks);
+  } else {
+    setupPlayLinks();
+  }
+
+  window.launchPlayStore = function(event) {
+    if (!isAndroid()) return true;
+    if (event && event.preventDefault) event.preventDefault();
+    if (event && event.currentTarget) {
+      try { event.currentTarget.removeAttribute("target"); } catch(e) {}
+    }
+    window.location.href = intentUrl;
+    return false;
+  };
+})();
 </script>
 
 </body>
