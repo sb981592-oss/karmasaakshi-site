@@ -487,6 +487,13 @@ code{font:600 .92em/1 var(--deva);background:var(--paper-2);border:1px solid var
   box-shadow:none; font-size:14px; padding:10px 14px;
 }
 .dl-p-btn.btn-alt:hover{border-color:var(--brand);background:var(--gold-soft)}
+/* फोनबाट आउनेलाई (विज्ञापनबाट आउने धेरैजसो) Android / Google Play कार्ड पहिले */
+@media (max-width:760px){
+  .dl-cards .dl-android{order:-1}
+  .dl-cards .dl-android{border:2px solid #1e8e3e;background:#ffffff;box-shadow:var(--shadow-md)}
+  .dl-cards .dl-windows{border:1px solid var(--rule);box-shadow:none}
+}
+.is-android .dl-cards .dl-android{order:-1;border:2px solid #1e8e3e;background:#ffffff;box-shadow:var(--shadow-md)}
 .dl-p-note{font-size:12.5px;line-height:1.5;color:var(--muted);margin:4px 2px 0}
 
 /* इन्स्टलेशन गाइड */
@@ -820,7 +827,7 @@ footer{
 
       <div class="dl-cards">
         <!-- विन्डोज कार्ड -->
-        <div class="dl-platform-card highlight">
+        <div class="dl-platform-card highlight dl-windows">
           <div>
             <div class="dl-platform-header">
               <div class="dl-p-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></svg></div>
@@ -857,7 +864,7 @@ footer{
         </div>
 
         <!-- एन्ड्रोइड कार्ड -->
-        <div class="dl-platform-card">
+        <div class="dl-platform-card dl-android">
           <div>
             <div class="dl-platform-header">
               <div class="dl-p-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.2"/><path d="M11 18.5h2"/></svg></div>
@@ -1060,6 +1067,9 @@ footer{
   function isAndroid() {
     return /Android/i.test(navigator.userAgent || "");
   }
+
+  // Android ट्याब्लेट (चौडा पर्दा) मा पनि Google Play कार्ड पहिले देखाउन
+  if (isAndroid()) document.documentElement.classList.add("is-android");
 
   // Pre-configure all Play Store links on Android so native touch/click works even without JS handlers
   function setupPlayLinks() {
