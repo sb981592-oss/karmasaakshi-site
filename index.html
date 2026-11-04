@@ -13,6 +13,9 @@
 <meta name="google-site-verification" content="googlebecfe5a5f881c23d">
 <meta name="google-site-verification" content="google44890322958eb5e8">
 <link rel="canonical" href="https://www.karmasaakshi.com/">
+<link rel="alternate" hreflang="ne" href="https://www.karmasaakshi.com/">
+<link rel="alternate" hreflang="hi" href="https://www.karmasaakshi.com/hi/">
+<link rel="alternate" hreflang="x-default" href="https://www.karmasaakshi.com/">
 
 <!-- Landing Scroll Fix: Always land at the very top (Hero section) on initial entry -->
 <script>
@@ -579,6 +582,11 @@ footer{
 .foot-brand span{font:400 23px/1.25 var(--display);color:#fff}
 .foot-links{display:flex;flex-wrap:wrap;gap:10px 20px;list-style:none;margin:0;padding:0}
 .nav-cta{white-space:nowrap}
+.lang-sw{display:inline-flex;gap:2px;background:var(--paper-2);border:1px solid var(--rule);border-radius:999px;padding:3px}
+.lang-sw a{font:600 13.5px/1 var(--deva);padding:7px 12px;border-radius:999px;color:var(--ink-2)}
+.lang-sw a.on{background:var(--brand);color:#fff}
+.nav-right{display:flex;align-items:center;gap:10px}
+@media(max-width:680px){.nav-cta{display:none}}
 .foot-links a{color:#f5d7cf;font-size:14.5px}
 .foot-links a:hover{color:#fff;text-decoration:underline}
 .foot-bottom{
@@ -641,9 +649,16 @@ footer{
       <li><a href="#faq">प्रायः सोधिने प्रश्न</a></li>
       <li><a href="#contact">सम्पर्क</a></li>
     </ul>
-    <a href="#download" class="nav-cta">डाउनलोड ⇩ (v1.0.33)</a>
+    <div class="nav-right">
+      <div class="lang-sw" aria-label="भाषा"><a href="/" class="on" hreflang="ne" lang="ne" aria-current="true" data-setlang="ne">नेपाली</a><a href="/hi/" hreflang="hi" lang="hi" data-setlang="hi">हिन्दी</a></div>
+      <a href="#download" class="nav-cta">डाउनलोड ⇩ (v1.0.33)</a>
+    </div>
   </div>
 </header>
+<div id="hiBanner" hidden style="background:var(--gold-soft);border-bottom:1px solid var(--rule);text-align:center;padding:10px 16px;font:500 15px/1.5 var(--deva);color:var(--ink-2)">
+  <a href="/hi/" data-setlang="hi" lang="hi" style="font-weight:700">यह पेज हिन्दी में देखें →</a>
+  <button type="button" id="hiBannerX" aria-label="बन्द गर्नुहोस्" style="margin-left:14px;border:0;background:none;font-size:18px;cursor:pointer;color:var(--muted)">×</button>
+</div>
 
 <!-- हिरो सेक्सन -->
 <section class="hero">
@@ -1055,6 +1070,26 @@ footer{
     </div>
   </div>
 </footer>
+
+<script>
+/* भारतबाट आएका (हिन्दी ब्राउजर / भारतीय समय-क्षेत्र) लाई हिन्दी पानाको सुझाव — जबरजस्ती सारिँदैन */
+(function(){
+  try{
+    document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){localStorage.setItem('ks_lang',a.getAttribute('data-setlang'))})});
+    var saved=localStorage.getItem('ks_lang');
+    if(saved==='ne')return;
+    if(saved==='hi'){location.replace('/hi/'+location.search);return;}
+    var langs=(navigator.languages||[navigator.language||'']).join(',').toLowerCase();
+    var tz='';try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||''}catch(e){}
+    var india=/^hi\b|,hi\b|-in\b/.test(langs)||/^Asia\/(Kolkata|Calcutta)$/.test(tz);
+    var nepal=/^ne\b|,ne\b|-np\b/.test(langs)||tz==='Asia/Kathmandu'||tz==='Asia/Katmandu';
+    if(india&&!nepal){
+      var b=document.getElementById('hiBanner');b.hidden=false;
+      document.getElementById('hiBannerX').onclick=function(){b.hidden=true;try{localStorage.setItem('ks_lang','ne')}catch(e){}};
+    }
+  }catch(e){}
+})();
+</script>
 
 <script>
 (function() {
